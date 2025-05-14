@@ -45,7 +45,7 @@ public class Member {
     @Column(nullable = false)
     private Boolean isEnabled;
 
-    @Column(nullable = true, length = 20)
+    @Column(nullable = true, length = 255)
     private String statusReason;
 
 }
