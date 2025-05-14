@@ -15,7 +15,7 @@ public class CareTip {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "careTipCategoryId")
+    @JoinColumn(nullable = false, name = "care_tip_category_id")
     private CareTipCategory careTipCategory;
 
     @Column(nullable = false)

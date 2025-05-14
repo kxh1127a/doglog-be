@@ -15,7 +15,7 @@ public class Answer {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "questionId")
+    @JoinColumn(nullable = false, name = "question_id")
     private Question question;
 
     @Column(nullable = false, length = 5000)
