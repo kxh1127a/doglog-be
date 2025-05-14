@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
-public class PetWeight {
+public class PetWeightHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
