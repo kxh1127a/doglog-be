@@ -31,5 +31,5 @@ public class Question {
     private Boolean isAnswer;
 
     @Column(nullable = false)
-    private Boolean isEnable;
+    private Boolean isEnabled;
 }

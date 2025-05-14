@@ -1,6 +1,7 @@
 package com.example.doglogbe.entity;
 
 import com.example.doglogbe.DoglogBeApplication;
+import com.example.doglogbe.type.PetHospitalBusiness;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,12 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PetHospital {
-
-    public enum BusinessType {
-        영업,
-        휴업,
-        폐업
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,8 +38,8 @@ public class PetHospital {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private BusinessType business;
+    private PetHospitalBusiness business;
 
     @Column(nullable = false)
-    private Boolean isEnable;
+    private Boolean isEnabled;
 }

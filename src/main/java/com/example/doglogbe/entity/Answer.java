@@ -25,5 +25,5 @@ public class Answer {
     private LocalDate editDate;
 
     @Column(nullable = false)
-    private Boolean isEnable;
+    private Boolean isEnabled;
 }

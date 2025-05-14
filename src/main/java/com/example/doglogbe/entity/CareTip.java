@@ -34,5 +34,5 @@ public class CareTip {
     private Boolean recommend;
 
     @Column(nullable = false)
-    private Boolean isEnable;
+    private Boolean isEnabled;
 }
