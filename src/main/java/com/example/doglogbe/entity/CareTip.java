@@ -28,7 +28,7 @@ public class CareTip {
     private LocalDate editDate;
 
     @Column(nullable = false)
-    private Integer like;
+    private Integer careTipLike;
 
     @Column(nullable = false)
     private Boolean recommend;
