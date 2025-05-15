@@ -3,6 +3,8 @@ package com.example.doglogbe.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 @Entity
 @Getter
@@ -17,5 +19,5 @@ public class PetBreed {
     private String breedName;
 
     @Column(nullable = false)
-    private Boolean isEnabled;
+    private Boolean isEnabled = true;
 }

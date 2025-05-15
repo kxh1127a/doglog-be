@@ -12,17 +12,15 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@DynamicInsert
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ColumnDefault("USER")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private MemberRole role;
+    private MemberRole role = MemberRole.USER;
 
     @Column(nullable = false, length = 100)
     private String name;
@@ -36,7 +34,6 @@ public class Member {
     @Column(nullable = false, length = 20, unique = true)
     private String phone;
 
-
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -46,9 +43,8 @@ public class Member {
     @Column(nullable = true)
     private LocalDateTime lastLoginAt;
 
-    @ColumnDefault("true")
     @Column(nullable = false)
-    private Boolean isEnabled;
+    private Boolean isEnabled = true;
 
     @Column(nullable = true)
     private String statusReason;
