@@ -4,18 +4,22 @@ import com.example.doglogbe.type.MemberRole;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
+@DynamicInsert
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ColumnDefault("USER")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private MemberRole role;
@@ -23,17 +27,17 @@ public class Member {
     @Column(nullable = false, length = 100)
     private String name;
 
-    @Column(nullable = false, length = 255, unique = true)
+    @Column(nullable = false, unique = true)
     private String userName;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false, length = 20, unique = true)
     private String phone;
 
 
-    @Column(nullable = false, length = 255, unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
@@ -42,10 +46,10 @@ public class Member {
     @Column(nullable = true)
     private LocalDateTime lastLoginAt;
 
+    @ColumnDefault("true")
     @Column(nullable = false)
     private Boolean isEnabled;
 
-    @Column(nullable = true, length = 255)
+    @Column(nullable = true)
     private String statusReason;
-
 }
