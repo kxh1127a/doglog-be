@@ -12,5 +12,4 @@ public class CareTipCreateRequest {
     private CareTipCategory careTipCategory;
     private String title;
     private String content;
-    private LocalDate editDate;
 }

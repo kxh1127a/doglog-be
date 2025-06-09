@@ -60,7 +60,7 @@ public class CareTip {
             this.careTipCategory = careTipCreateRequest.getCareTipCategory();
             this.title = careTipCreateRequest.getTitle();
             this.content = careTipCreateRequest.getContent();
-            this.editDate = careTipCreateRequest.getEditDate();
+            this.editDate = LocalDate.now();
         }
 
         @Override
