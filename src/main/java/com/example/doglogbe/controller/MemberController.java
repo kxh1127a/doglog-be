@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/member")
 public class MemberController {
-    private final MemberService memberService
+    private final MemberService memberService;
     @PostMapping("/new")
     public String setMember(@RequestBody MemberCreateRequest request) {
         memberService.setMember(request);
