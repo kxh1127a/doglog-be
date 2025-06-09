@@ -26,8 +26,10 @@ public class MemberController {
 
     @GetMapping("/api")
     public ResponseEntity<Page<MemberItem>> getMembers(@RequestParam(defaultValue = "0") int page,
-                                       @RequestParam(defaultValue = "10") int size) {
-        Page<MemberItem> memberPage = memberService.getMembers(page, size);
+                                                       @RequestParam(defaultValue = "10") int size,
+                                                       @RequestParam(defaultValue = "all") String filter
+    ) {
+        Page<MemberItem> memberPage = memberService.getMembers(page, size, filter);
         return ResponseEntity.ok(memberPage);
     }
 }

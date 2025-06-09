@@ -21,5 +21,4 @@ public class MemberItem {
     private String lastLoginInfo;
     private Boolean isEnabled;
     private String petProfileImageUrl;
-
 }
