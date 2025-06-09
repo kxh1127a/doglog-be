@@ -1,4 +1,4 @@
-package com.example.doglogbe.type;
+package com.example.doglogbe.enums;
 
 public enum MemberRole {
     ADMIN,

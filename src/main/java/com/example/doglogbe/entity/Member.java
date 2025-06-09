@@ -1,11 +1,9 @@
 package com.example.doglogbe.entity;
 
-import com.example.doglogbe.type.MemberRole;
+import com.example.doglogbe.enums.MemberRole;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.DynamicInsert;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

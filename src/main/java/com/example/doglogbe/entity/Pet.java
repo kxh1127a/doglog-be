@@ -1,6 +1,6 @@
 package com.example.doglogbe.entity;
 
-import com.example.doglogbe.type.PetGender;
+import com.example.doglogbe.enums.PetGender;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
