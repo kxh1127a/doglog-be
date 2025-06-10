@@ -45,6 +45,8 @@ public class MemberService {
                 .map(item -> new MemberItem.Builder(item).build())
                 .collect(Collectors.toList());
 
+
+
         return new PageImpl<>(result, pageable, target.getTotalElements());
     }
 }
