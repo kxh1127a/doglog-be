@@ -1,5 +1,6 @@
 package com.example.doglogbe.entity;
 
+import com.example.doglogbe.enums.CareTipCategory;
 import com.example.doglogbe.interfaces.CommonModelBuilder;
 import com.example.doglogbe.model.CareTipCreateRequest;
 import jakarta.persistence.*;
@@ -8,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter

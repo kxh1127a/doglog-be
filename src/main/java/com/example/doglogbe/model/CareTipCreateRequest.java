@@ -1,10 +1,8 @@
 package com.example.doglogbe.model;
 
-import com.example.doglogbe.entity.CareTipCategory;
+import com.example.doglogbe.enums.CareTipCategory;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter

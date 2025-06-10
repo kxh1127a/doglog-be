@@ -20,4 +20,6 @@ public class CareTipController {
         careTipService.setCareTip(careTipCreateRequest);
         return ResponseService.getSuccessResult();
     }
+
+
 }
