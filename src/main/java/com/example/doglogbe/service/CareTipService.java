@@ -16,6 +16,8 @@ public class CareTipService {
         careTipRepository.save(new CareTip.Builder(careTipCreateRequest).build());
     }
 
+//    public List<CareTipItem>
+//
 
 
 }
