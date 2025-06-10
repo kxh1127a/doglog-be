@@ -1,6 +1,7 @@
 package com.example.doglogbe.service;
 
 import com.example.doglogbe.entity.CareTip;
+import com.example.doglogbe.entity.CareTipResponse;
 import com.example.doglogbe.model.CareTipCreateRequest;
 import com.example.doglogbe.model.CareTipItem;
 import com.example.doglogbe.repository.CareTipRepository;
@@ -27,6 +28,10 @@ public class CareTipService {
             careTipItems.add(new CareTipItem.Builder(careTip).build());
         }
         return careTipItems;
+    }
+
+    public CareTipResponse getCareTip(long id){
+        careTipRepository.findById(id).orElseThrow();
     }
 
 
