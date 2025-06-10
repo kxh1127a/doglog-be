@@ -1,10 +1,13 @@
 package com.example.doglogbe.controller;
 
 import com.example.doglogbe.model.CareTipCreateRequest;
+import com.example.doglogbe.model.CareTipItem;
 import com.example.doglogbe.model.result.CommonResult;
+import com.example.doglogbe.model.result.ListResult;
 import com.example.doglogbe.service.CareTipService;
 import com.example.doglogbe.service.ResponseService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +24,10 @@ public class CareTipController {
         return ResponseService.getSuccessResult();
     }
 
-
+    @GetMapping("/all")
+    public ListResult<CareTipItem> getCareTips() {
+        return ResponseService.getListResult(careTipService.getCareTips());
+    }
 
 
 }
