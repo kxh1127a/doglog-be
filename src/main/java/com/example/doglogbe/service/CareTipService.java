@@ -23,7 +23,7 @@ public class CareTipService {
         careTipRepository.save(new CareTip.Builder(careTipCreateRequest).build());
     }
 
-    //care tip 리스트로 전체 목록 가져오기(컨텐츠는 빠져있습니다)
+    //care tip 리스트로 전체 목록 가져오기(컨텐츠는 빠져있습니다) --pagable
     public List<CareTipItem> getCareTips() {
         List<CareTip> careTips = careTipRepository.findAll();
         List<CareTipItem> careTipItems = new LinkedList<>();
@@ -52,6 +52,8 @@ public class CareTipService {
         careTip.setIsEnabled(!careTip.getIsEnabled());
         careTipRepository.save(careTip);
     }
+
+    // 케어팁 search 기능 구현
 
 
 
