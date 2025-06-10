@@ -29,6 +29,8 @@ public class CareTipService {
         return careTipItems;
     }
 
+    public CareTipResponse
+
 
 
 }
