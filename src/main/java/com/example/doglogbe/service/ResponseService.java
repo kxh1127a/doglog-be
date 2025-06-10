@@ -5,6 +5,7 @@ import com.example.doglogbe.model.result.CommonResult;
 import com.example.doglogbe.model.result.ListResult;
 import com.example.doglogbe.model.result.SingleResult;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,6 +40,7 @@ public class ResponseService {
         setResult(result, false, resultCode);
         return result;
     }
+
 
     private static void setResult(CommonResult commonResult, boolean isSuccess, ResultCode resultCode) {
         commonResult.setIsSuccess(isSuccess);
