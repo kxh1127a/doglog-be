@@ -50,7 +50,7 @@ public enum ResultCode {
     CARE_TIP_UPDATE_FAILED(-3003, "케어팁 수정에 실패했습니다."),
     CARE_TIP_DELETE_FAILED(-3004, "케어팁 삭제에 실패했습니다."),
     // 사용자 조회
-    CARE_TIP_NOT_FOUND(-3010, "케어팁 정보를 찾을 수 없습니다."),
+    CARE_TIP_NOT_FOUND(-3010, "해당 케어팁을 찾을 수 없습니다."),
     CARE_TIP_CATEGORY_EMPTY(-3011, "해당 카테고리에 케어팁이 없습니다."),
 
     // -4000 ~ -4999: 병원 정보(Hospital Info)
