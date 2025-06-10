@@ -19,10 +19,10 @@ public class ExceptionAdvice {
         return ResponseService.getFailResult(ResultCode.FAILED);
     }
 
-    // 예시
-    @ExceptionHandler(CAlreadyExistsException.class)
+    // 해당 케어팁을 찾을 수 없습니다
+    @ExceptionHandler(CCareTipNotFoundException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    protected CommonResult customException(HttpServletRequest request, CAlreadyExistsException e) {
-        return ResponseService.getFailResult(ResultCode.ALREADY_EXISTS);
+    protected CommonResult customException(HttpServletRequest request, CCareTipNotFoundException e) {
+        return ResponseService.getFailResult(ResultCode.CARE_TIP_NOT_FOUND);
     }
 }
