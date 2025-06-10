@@ -36,6 +36,12 @@ public class CareTipService {
         return new CareTipResponse.Builder(careTip).build();
     }
 
+    public void putCareTipByEnabled(long id){
+        CareTip careTip = careTipRepository.findById(id).orElseThrow(CCareTipNotFoundException::new);
+        careTip.setIsEnabled(!careTip.getIsEnabled());
+        careTipRepository.save(careTip);
+    }
+
 
 
 }

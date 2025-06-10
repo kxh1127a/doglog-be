@@ -33,6 +33,15 @@ public class CareTipController {
         return ResponseService.getSingleResult(careTipService.getCareTip(careTipId));
     }
 
+    @PatchMapping("/update/{id}/enabled")
+    public CommonResult putCareTipByEnabled(@PathVariable long id) {
+        careTipService.putCareTipByEnabled(id);
+        return ResponseService.getSuccessResult();
+    }
+
+
+
+
 
 
 
