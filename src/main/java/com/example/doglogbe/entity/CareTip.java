@@ -20,8 +20,7 @@ public class CareTip {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "care_tip_category_id")
+    @Enumerated(EnumType.STRING)
     private CareTipCategory careTipCategory;
 
     @Column(nullable = false)
