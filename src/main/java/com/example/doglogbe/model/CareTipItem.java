@@ -15,6 +15,8 @@ public class CareTipItem {
     private Boolean recommend;
     private Boolean isEnabled;
 
+    //model
+
 //    public static class Builder {
 //        private final Long id;
 //        private final String title;
