@@ -2,6 +2,7 @@ package com.example.doglogbe.service;
 
 import com.example.doglogbe.entity.CareTip;
 import com.example.doglogbe.entity.CareTipResponse;
+import com.example.doglogbe.exception.CCareTipNotFoundException;
 import com.example.doglogbe.model.CareTipCreateRequest;
 import com.example.doglogbe.model.CareTipItem;
 import com.example.doglogbe.repository.CareTipRepository;
@@ -31,7 +32,8 @@ public class CareTipService {
     }
 
     public CareTipResponse getCareTip(long id){
-        careTipRepository.findById(id).orElseThrow();
+        CareTip careTip = careTipRepository.findById(id).orElseThrow(CCareTipNotFoundException::new);
+        return new CareTipResponse.Builder(careTip).build();
     }
 
 
