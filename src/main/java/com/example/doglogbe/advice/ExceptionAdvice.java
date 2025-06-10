@@ -19,10 +19,17 @@ public class ExceptionAdvice {
         return ResponseService.getFailResult(ResultCode.FAILED);
     }
 
+<<<<<<< Updated upstream
     // 해당 케어팁을 찾을 수 없습니다
     @ExceptionHandler(CCareTipNotFoundException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected CommonResult customException(HttpServletRequest request, CCareTipNotFoundException e) {
         return ResponseService.getFailResult(ResultCode.CARE_TIP_NOT_FOUND);
+=======
+    @ExceptionHandler(CUserNotFoundException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CUserNotFoundException e) {
+        return ResponseService.getFailResult(ResultCode.USER_NOT_FOUND);
+>>>>>>> Stashed changes
     }
 }

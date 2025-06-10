@@ -1,7 +1,9 @@
 package com.example.doglogbe.controller;
 
+import com.example.doglogbe.entity.Member;
 import com.example.doglogbe.model.MemberCreateRequest;
 import com.example.doglogbe.model.MemberItem;
+import com.example.doglogbe.model.MemberSearchRequest;
 import com.example.doglogbe.model.result.CommonResult;
 import com.example.doglogbe.model.result.SingleResult;
 import com.example.doglogbe.service.MemberService;
@@ -30,5 +32,13 @@ public class MemberController {
     ) {
         Page<MemberItem> memberPage = memberService.getMembers(page, size, filter);
         return ResponseService.getSingleResult(memberPage);
+    }
+
+    @GetMapping("/search")
+    public SingleResult<Page<MemberItem>> getMembersBySearch(@ModelAttribute MemberSearchRequest request) {
+//        MemberSearchRequest request = new MemberSearchRequest(name, userName, email, phone);
+
+        Page<MemberItem> memberSearchPage = memberService.getMembersBySearch(request);
+        return ResponseService.getSingleResult(memberSearchPage);
     }
 }
