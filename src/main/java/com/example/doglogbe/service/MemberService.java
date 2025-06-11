@@ -8,6 +8,8 @@ import com.example.doglogbe.model.MemberItem;
 import com.example.doglogbe.model.MemberResponse;
 import com.example.doglogbe.model.MemberSearchRequest;
 import com.example.doglogbe.repository.MemberRepository;
+import com.example.doglogbe.repository.QuestionRepository;
+import com.example.doglogbe.repository.TipLikeRepository;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -25,6 +27,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final TipLikeRepository tipLikeRepository;
+    private final QuestionRepository questionRepository;
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -161,10 +166,10 @@ public class MemberService {
 
     public MemberResponse getMember(long id) {
         Member target = memberRepository.findById(id).orElseThrow(CUserNotFoundException::new);
-        List<TipLike> targetTips = target.getTips();
+//        long countTipLike = ;
 
 
         MemberResponse response = new MemberResponse.Builder(target).build();
-        return "";
+        return response;
     }
 }
