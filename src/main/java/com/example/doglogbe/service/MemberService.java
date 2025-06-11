@@ -71,15 +71,15 @@ public class MemberService {
             // 펫 정보 (Entity에 @OneToMany 추가했음 => FK 역으로 가져오기 위해서)
             // @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
             // private List<Pet> pets = new ArrayList<>();
-            if(!item.getPets().isEmpty()) {
-                Pet pet = item.getPets().get(0); // 대표 반려동물 1마리 선택
-                addItem.setPetName(pet.getName());
-                addItem.setPetProfileImageUrl(pet.getProfileImageUrl());
-
-                // 날짜 포맷 명시하는 방법
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                addItem.setPetBirthDate(pet.getBirthDate().format(formatter));
-            }
+//            if(!item.getPets().isEmpty()) {
+//                Pet pet = item.getPets().get(0); // 대표 반려동물 1마리 선택
+//                addItem.setPetName(pet.getName());
+//                addItem.setPetProfileImageUrl(pet.getProfileImageUrl());
+//
+//                // 날짜 포맷 명시하는 방법
+//                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//                addItem.setPetBirthDate(pet.getBirthDate().format(formatter));
+//            }
 
             // 마지막 로그인 정보 (LocalDate 에서 String '@@일 전' 형태로)
             if(item.getLastLoginAt() != null) {

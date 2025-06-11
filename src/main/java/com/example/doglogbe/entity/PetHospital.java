@@ -15,30 +15,30 @@ public class PetHospital {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private String animalHospitalName;
+    private String animalHospitalName; // 병원 이름
 
     @Column(nullable = true, length = 20)
-    private String phoneNumber;
+    private String phoneNumber; // 전화번호
 
     @Column(nullable = true)
-    private String postAddress;
+    private String postAddress; // 예전 주소
 
-    @Column(nullable = false)
-    private String roadNameAddress;
+    @Column(nullable = true)
+    private String roadNameAddress; // 도로명 주소
 
     @Column(nullable = true, length = 10)
-    private String careTipNumber;
+    private String postCode; // 우편번호
 
     @Column(nullable = true)
-    private Double xCoordinate;
+    private Double latitude; // 위도
 
     @Column(nullable = true)
-    private Double yCoordinate;
+    private Double longitude; // 경도
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private PetHospitalBusiness business;
+    private PetHospitalBusiness business; // 영업 상태
 
     @Column(nullable = false)
-    private Boolean isEnabled;
+    private Boolean isEnabled; // 활성 여부
 }
