@@ -169,7 +169,6 @@ public class MemberService {
         long countTipLike = tipLikeRepository.countAllByMemberId(id);
         long countQuestion = questionRepository.countAllByMemberId(id);
 
-        MemberResponse response = new MemberResponse.Builder(target, countTipLike, countQuestion).build();
-        return response;
+        return new MemberResponse.Builder(target, countTipLike, countQuestion).build();
     }
 }
