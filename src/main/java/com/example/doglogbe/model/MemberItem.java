@@ -2,6 +2,7 @@ package com.example.doglogbe.model;
 
 import com.example.doglogbe.entity.Member;
 import com.example.doglogbe.entity.Pet;
+import com.example.doglogbe.enums.MemberRole;
 import com.example.doglogbe.interfaces.CommonModelBuilder;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -16,6 +17,8 @@ import java.time.temporal.ChronoUnit;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberItem {
+    private Long id;
+    private MemberRole memberRole;
     private String name;
     private String userName;
     private String email;
@@ -28,6 +31,8 @@ public class MemberItem {
     private String petProfileImageUrl;
 
     private MemberItem (Builder builder) {
+        this.id = builder.id;
+        this.memberRole = builder.memberRole;
         this.name = builder.name;
         this.userName = builder.userName;
         this.email = builder.email;
@@ -41,6 +46,8 @@ public class MemberItem {
     }
 
     public static class Builder implements CommonModelBuilder<MemberItem> {
+        private final Long id;
+        private final MemberRole memberRole;
         private final String name;
         private final String userName;
         private final String email;
@@ -53,6 +60,8 @@ public class MemberItem {
         private final String petProfileImageUrl;
 
         public Builder(Member item) {
+            this.id = item.getId();
+            this.memberRole = item.getRole();
             this.name = item.getName();
             this.userName = item.getUserName();
             this.email = item.getEmail();

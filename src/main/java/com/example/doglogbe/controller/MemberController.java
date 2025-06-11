@@ -28,9 +28,11 @@ public class MemberController {
     @GetMapping("/api")
     public SingleResult<Page<MemberItem>> getMembers(@RequestParam(defaultValue = "0") int page,
                                                      @RequestParam(defaultValue = "10") int size,
+                                                     @RequestParam(defaultValue = "createdAt") String sortBy,
+                                                     @RequestParam(defaultValue = "desc") String direction,
                                                      @RequestParam(defaultValue = "all") String filter
     ) {
-        Page<MemberItem> memberPage = memberService.getMembers(page, size, filter);
+        Page<MemberItem> memberPage = memberService.getMembers(page, size, sortBy, direction, filter);
         return ResponseService.getSingleResult(memberPage);
     }
 
