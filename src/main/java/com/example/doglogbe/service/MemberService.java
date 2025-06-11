@@ -166,10 +166,10 @@ public class MemberService {
 
     public MemberResponse getMember(long id) {
         Member target = memberRepository.findById(id).orElseThrow(CUserNotFoundException::new);
-//        long countTipLike = ;
+        long countTipLike = tipLikeRepository.countAllByMemberId(id);
+        long countQuestion = questionRepository.countAllByMemberId(id);
 
-
-        MemberResponse response = new MemberResponse.Builder(target).build();
+        MemberResponse response = new MemberResponse.Builder(target, countTipLike, countQuestion).build();
         return response;
     }
 }
