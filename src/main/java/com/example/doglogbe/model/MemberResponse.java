@@ -13,6 +13,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberResponse {
     private Long id;
     private String name;
@@ -30,4 +31,21 @@ public class MemberResponse {
 
     private Integer tipLikeCount;
     private Integer questionCount;
+
+    private MemberResponse(Builder builder) {
+
+    }
+
+    public static class Builder implements CommonModelBuilder<MemberResponse> {
+
+        public Builder(Member member) {
+
+        }
+
+        @Override
+        public MemberResponse build() {
+            return new MemberResponse(this);
+        }
+    }
+
 }

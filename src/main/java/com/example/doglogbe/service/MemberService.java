@@ -1,6 +1,8 @@
 package com.example.doglogbe.service;
 
 import com.example.doglogbe.entity.Member;
+import com.example.doglogbe.entity.TipLike;
+import com.example.doglogbe.exception.CUserNotFoundException;
 import com.example.doglogbe.model.MemberCreateRequest;
 import com.example.doglogbe.model.MemberItem;
 import com.example.doglogbe.model.MemberResponse;
@@ -158,6 +160,11 @@ public class MemberService {
     }
 
     public MemberResponse getMember(long id) {
+        Member target = memberRepository.findById(id).orElseThrow(CUserNotFoundException::new);
+        List<TipLike> targetTips = target.getTips();
 
+
+        MemberResponse response = new MemberResponse.Builder(target).build();
+        return "";
     }
 }
