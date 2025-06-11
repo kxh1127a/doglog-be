@@ -3,6 +3,7 @@ package com.example.doglogbe.service;
 import com.example.doglogbe.entity.Member;
 import com.example.doglogbe.model.MemberCreateRequest;
 import com.example.doglogbe.model.MemberItem;
+import com.example.doglogbe.model.MemberResponse;
 import com.example.doglogbe.model.MemberSearchRequest;
 import com.example.doglogbe.repository.MemberRepository;
 import jakarta.persistence.*;
@@ -154,5 +155,9 @@ public class MemberService {
 
         // 9. Page 객체로 리턴
         return new PageImpl<>(result, PageRequest.of(page, size), total);
+    }
+
+    public MemberResponse getMember(long id) {
+
     }
 }
