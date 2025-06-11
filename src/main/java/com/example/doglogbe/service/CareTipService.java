@@ -7,6 +7,10 @@ import com.example.doglogbe.model.CareTipCreateRequest;
 import com.example.doglogbe.model.CareTipItem;
 import com.example.doglogbe.repository.CareTipRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -23,14 +27,16 @@ public class CareTipService {
         careTipRepository.save(new CareTip.Builder(careTipCreateRequest).build());
     }
 
-    //care tip 리스트로 전체 목록 가져오기(컨텐츠는 빠져있습니다) --pagable
-    public List<CareTipItem> getCareTips() {
-        List<CareTip> careTips = careTipRepository.findAll();
+    //care tip 리스트로 전체 목록 가져오기(컨텐츠는 빠져있습니다)
+    public Page<CareTipItem> getCareTips(int page) {
+        Pageable pageable = PageRequest.of(page, 10);
+
+        Page<CareTip> careTips = careTipRepository.findAll(pageable);
         List<CareTipItem> careTipItems = new LinkedList<>();
         for( CareTip careTip: careTips ) {
             careTipItems.add(new CareTipItem.Builder(careTip).build());
         }
-        return careTipItems;
+        return new PageImpl<>(careTipItems, pageable, careTips.getTotalElements());
     }
 
     //care tip 단일 항목 가져오기
