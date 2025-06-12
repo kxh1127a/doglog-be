@@ -16,7 +16,7 @@ public class PetResponse {
     private LocalDate petBirthDate;
     private PetGender petGender;
     private Double petWeight;
-    private PetBreed petBreed;
+    private String petBreed;
 
     public PetResponse(Pet pet) {
         this.petName = pet.getName();
@@ -24,6 +24,6 @@ public class PetResponse {
         this.petBirthDate = pet.getBirthDate();
         this.petGender = pet.getGender();
         this.petWeight = pet.getWeight();
-        this.petBreed = pet.getPetBreed();
+        this.petBreed = pet.getPetBreed().getBreedName();
     }
 }
