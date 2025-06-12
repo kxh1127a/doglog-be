@@ -26,6 +26,7 @@ public class MemberResponse {
     private String phone;
     private LocalDateTime createdAt;
     private MemberRole role;
+    private Boolean isEnabled;
 
     private List<PetResponse> pets;
 
@@ -40,6 +41,7 @@ public class MemberResponse {
         this.phone = builder.phone;
         this.createdAt = builder.createdAt;
         this.role = builder.role;
+        this.isEnabled = builder.isEnabled;
 
         this.pets = builder.pets;
 
@@ -55,9 +57,11 @@ public class MemberResponse {
         private final String phone;
         private final LocalDateTime createdAt;
         private final MemberRole role;
+        private final Boolean isEnabled;
         private final List<PetResponse> pets;
         private final Long countTipLike;
         private final Long countQuestion;
+
 
 
         public Builder(Member member, long countTipLike, long countQuestion) {
@@ -68,6 +72,7 @@ public class MemberResponse {
             this.phone = member.getPhone();
             this.createdAt = member.getCreatedAt();
             this.role = member.getRole();
+            this.isEnabled = member.getIsEnabled();
 
             this.pets = member.getPets().stream()
                     .map(PetResponse::new)
