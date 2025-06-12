@@ -17,6 +17,7 @@ import java.time.LocalDate;
 public class PetItem {
     private Long id;
     private String name;
+    private String profileImageUrl;
     private LocalDate birthDate;
     private String petBreed;
     private Double weight;
@@ -30,6 +31,7 @@ public class PetItem {
     private PetItem(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
+        this.profileImageUrl = builder.profileImageUrl;
         this.birthDate = builder.birthDate;
         this.petBreed = builder.petBreed;
         this.weight = builder.weight;
@@ -43,6 +45,7 @@ public class PetItem {
     public static class Builder implements CommonModelBuilder<PetItem> {
         private final Long id;
         private final String name;
+        private final String profileImageUrl;
         private final LocalDate birthDate;
         private final String petBreed;
         private final Double weight;
@@ -55,6 +58,7 @@ public class PetItem {
         public Builder(Pet pet) {
             this.id = pet.getId();
             this.name = pet.getName();
+            this.profileImageUrl = pet.getProfileImageUrl();
             this.birthDate = pet.getBirthDate();
             this.petBreed = pet.getPetBreed().getBreedName();
             this.weight = pet.getWeight();
