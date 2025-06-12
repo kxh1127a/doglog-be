@@ -1,7 +1,9 @@
 package com.example.doglogbe.service;
 
 import com.example.doglogbe.entity.Question;
+import com.example.doglogbe.model.MemberCreateRequest;
 import com.example.doglogbe.model.QnaItem;
+import com.example.doglogbe.model.QnaSearchRequest;
 import com.example.doglogbe.repository.AnswerRepository;
 import com.example.doglogbe.repository.QuestionRepository;
 import io.swagger.v3.oas.models.links.Link;
@@ -20,16 +22,7 @@ public class QnaService {
     private final AnswerRepository answerRepository;
 
 
-    public Page<QnaItem> getQnaList(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("id"));
-        Page<Question> target = questionRepository.findAllByIsEnabled(true, pageable);
-
-        List<QnaItem> result = target.stream()
-                .map(item->new QnaItem.Builder(item).build())
-                .collect(Collectors.toList());
-
-        return new PageImpl<>(result, pageable, target.getTotalElements());
-
+    public Page<QnaItem> getQnaList(QnaSearchRequest request) {
 
     }
 }
