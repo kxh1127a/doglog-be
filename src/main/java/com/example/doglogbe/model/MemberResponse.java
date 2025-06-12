@@ -58,7 +58,9 @@ public class MemberResponse {
         private final LocalDateTime createdAt;
         private final MemberRole role;
         private final Boolean isEnabled;
+
         private final List<PetResponse> pets;
+
         private final Long countTipLike;
         private final Long countQuestion;
 
