@@ -45,8 +45,9 @@ public class QnaService {
             predicates.add(cb.like(root.get("askTitle"), "%" + request.getByTitle() + "%"));
         }
 
-        Join<Question, Member> memberJoin = root.join("member", JoinType.INNER);
+
         if (request.getByWriter() != null && !request.getByWriter().isEmpty()) {
+            Join<Question, Member> memberJoin = root.join("member", JoinType.INNER);
             predicates.add(cb.like(memberJoin.get("name"), "%" + request.getByWriter() + "%"));
         }
 
@@ -102,8 +103,8 @@ public class QnaService {
             countPredicates.add(cb.like(countRoot.get("askTitle"), "%" + request.getByTitle() + "%"));
         }
 
-        Join<Question, Member> countMemberJoin = countRoot.join("member", JoinType.INNER);
         if (request.getByWriter() != null && !request.getByWriter().isEmpty()) {
+            Join<Question, Member> countMemberJoin = countRoot.join("member", JoinType.INNER);
             countPredicates.add(cb.like(countMemberJoin.get("name"), "%" + request.getByWriter() + "%"));
         }
 

@@ -13,32 +13,44 @@ import java.time.LocalDate;
 @Setter
 public class QnaItem {
     private Long id;
-    private Member member;
     private String askTitle;
     private LocalDate editDate;
     private Boolean isAnswer;
 
+    private Long memberId;
+    private String memberName;
+    private String memberUserName;
+
     private QnaItem(Builder builder) {
         this.id = builder.id;
-        this.member = builder.member;
         this.askTitle = builder.askTitle;
         this.editDate = builder.editDate;
         this.isAnswer = builder.isAnswer;
+
+        this.memberId = builder.memberId;
+        this.memberName = builder.memberName;
+        this.memberUserName = builder.memberUserName;
     }
 
     public static class Builder implements CommonModelBuilder<QnaItem> {
         private final Long id;
-        private final Member member;
         private final String askTitle;
         private final LocalDate editDate;
         private final Boolean isAnswer;
 
+        private final Long memberId;
+        private final String memberName;
+        private final String memberUserName;
+
         public Builder(Question item) {
             this.id = item.getId();
-            this.member = item.getMember();
             this.askTitle = item.getAskTitle();
             this.editDate = item.getEditDate();
             this.isAnswer = item.getIsAnswer();
+
+            this.memberId = item.getMember().getId();
+            this.memberName = item.getMember().getName();
+            this.memberUserName = item.getMember().getUserName();
         }
 
         @Override
