@@ -15,19 +15,19 @@ public class PetHospital {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private String animalHospitalName; // 병원 이름
+    private String animalHospitalName; // 사업장명
 
     @Column(nullable = true, length = 20)
-    private String phoneNumber; // 전화번호
+    private String phoneNumber; // 소재지전화
 
     @Column(nullable = true)
-    private String postAddress; // 예전 주소
+    private String postAddress; // 소재지전체주소
 
     @Column(nullable = true)
-    private String roadNameAddress; // 도로명 주소
+    private String roadNameAddress; // 도로명전체주소
 
     @Column(nullable = true, length = 10)
-    private String postCode; // 우편번호
+    private String postCode; // 도로명우편번호
 
     @Column(nullable = true)
     private Double latitude; // 위도
