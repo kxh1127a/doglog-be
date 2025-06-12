@@ -3,6 +3,7 @@ package com.example.doglogbe.model;
 import com.example.doglogbe.entity.Member;
 import com.example.doglogbe.entity.Pet;
 import com.example.doglogbe.entity.PetBreed;
+import com.example.doglogbe.enums.MemberRole;
 import com.example.doglogbe.enums.PetGender;
 import com.example.doglogbe.interfaces.CommonModelBuilder;
 import lombok.AccessLevel;
@@ -24,6 +25,7 @@ public class MemberResponse {
     private String email;
     private String phone;
     private LocalDateTime createdAt;
+    private MemberRole role;
 
     private List<PetResponse> pets;
 
@@ -37,7 +39,10 @@ public class MemberResponse {
         this.email = builder.email;
         this.phone = builder.phone;
         this.createdAt = builder.createdAt;
+        this.role = builder.role;
+
         this.pets = builder.pets;
+
         this.countTipLike = builder.countTipLike;
         this.countQuestion = builder.countQuestion;
     }
@@ -49,6 +54,7 @@ public class MemberResponse {
         private final String email;
         private final String phone;
         private final LocalDateTime createdAt;
+        private final MemberRole role;
         private final List<PetResponse> pets;
         private final Long countTipLike;
         private final Long countQuestion;
@@ -61,6 +67,7 @@ public class MemberResponse {
             this.email = member.getEmail();
             this.phone = member.getPhone();
             this.createdAt = member.getCreatedAt();
+            this.role = member.getRole();
 
             this.pets = member.getPets().stream()
                     .map(PetResponse::new)
