@@ -19,7 +19,6 @@ public class PetHospitalService {
 
     public void setPetHospitalByFile(MultipartFile multipartFile) throws IOException {
         File file = CommonFile.multipartToFile(multipartFile);
-        boolean deleted = file.delete();
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 
         // 버퍼에서 넘어온 string 한줄을 임시로 담아 둘 변수가 필요하다
@@ -29,11 +28,8 @@ public class PetHospitalService {
 
         while ((line = bufferedReader.readLine()) != null) {
             System.out.println(line);
-
-
             index++;
         }
-
         bufferedReader.close();
     }
 }

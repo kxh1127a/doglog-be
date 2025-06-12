@@ -1,12 +1,11 @@
 package com.example.doglogbe.controller;
 
-import com.example.doglogbe.entity.PetHospital;
 import com.example.doglogbe.service.PetHospitalService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,8 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class PetHospitalController {
     private final PetHospitalService petHospitalService;
 
-    @PostMapping("/all")
-    public void setPetHospitalByFile(@RequestBody PetHospital petHospital) {
-
+    @PostMapping("/file-upload")
+    public String setPetHospitalByFile(@RequestParam("file") MultipartFile file) throws IOException {
+        petHospitalService.setPetHospitalByFile(file);
+        return "success";
     }
 }
