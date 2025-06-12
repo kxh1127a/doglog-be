@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class QnaController {
     private final QnaService qnaService;
 
-    @GetMapping("/all")
+    @GetMapping("/api")
     public SingleResult<Page<QnaItem>> getQnaList(@ModelAttribute QnaSearchRequest request) {
         return ResponseService.getSingleResult(qnaService.getQnaList(request));
     }
