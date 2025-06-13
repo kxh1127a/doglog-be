@@ -57,6 +57,12 @@ public class Member {
     @Column(nullable = true)
     private String statusReason;
 
+    @Column(nullable = true)
+    private Integer totalLike;
+
+    @Column(nullable = true)
+    private Integer totalQuestion;
+
     @JsonBackReference
     @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Pet> pets = new ArrayList<>();

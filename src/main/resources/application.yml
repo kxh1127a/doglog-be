@@ -3,7 +3,7 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
   datasource:
-    url: jdbc:postgresql://34.46.205.69:5432/doglog
+    url: jdbc:postgresql://34.64.202.138:5432/postgres
     username: postgres
     password: Ace0909!!
     hikari:
