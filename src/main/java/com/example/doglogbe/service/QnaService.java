@@ -136,7 +136,7 @@ public class QnaService {
     public QnaResponse setQna(QnaCreateRequest request) {
         Question question = questionRepository.findById(request.getQuestionId()).orElseThrow(CQuestionNotFoundException::new);
         Answer answer = new Answer.Builder(request, question).build();
-        System.out.println(answer);
+        System.out.println(answer.getEditDate());
         answerRepository.save(answer);
 
         QnaResponse result = new QnaResponse.Builder(question).build();

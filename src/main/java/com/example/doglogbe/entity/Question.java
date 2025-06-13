@@ -39,6 +39,6 @@ public class Question {
     private Boolean isEnabled;
 
     @JsonBackReference
-    @OneToOne(mappedBy = "question", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "question", fetch = FetchType.EAGER)
     private Answer answer;
 }

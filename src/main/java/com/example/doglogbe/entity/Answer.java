@@ -22,7 +22,7 @@ public class Answer {
     private Long id;
 
     @JsonManagedReference
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "question_id")
     private Question question;
 
