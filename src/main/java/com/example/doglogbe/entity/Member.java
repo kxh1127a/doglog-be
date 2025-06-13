@@ -59,14 +59,21 @@ public class Member {
     @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Pet> pets = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<TipLike> tips = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Question> questions = new ArrayList<>();
+
+
     private Member(Builder builder) {
         this.name = builder.name;
         this.userName = builder.userName;
         this.password = builder.password;
         this.phone = builder.phone;
         this.email = builder.email;
-        this.createdAt = builder.createdAt;
-        this.lastLoginAt = builder.lastLoginAt;
+        this.createdAt = LocalDateTime.now();
+        this.lastLoginAt = LocalDateTime.now();
     }
 
     public static class Builder implements CommonModelBuilder<Member> {
@@ -75,8 +82,6 @@ public class Member {
         private final String password;
         private final String phone;
         private final String email;
-        private final LocalDateTime createdAt;
-        private final LocalDateTime lastLoginAt;
 
         public Builder (MemberCreateRequest request) {
             this.name = request.getName();
@@ -84,8 +89,6 @@ public class Member {
             this.password = request.getPassword();
             this.phone = request.getPhone();
             this.email = request.getEmail();
-            this.createdAt = LocalDateTime.now();
-            this.lastLoginAt = LocalDateTime.now();
         }
 
         @Override
