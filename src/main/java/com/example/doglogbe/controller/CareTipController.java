@@ -1,14 +1,15 @@
 package com.example.doglogbe.controller;
 
 import com.example.doglogbe.entity.CareTipResponse;
-import com.example.doglogbe.model.CareTipCreateRequest;
-import com.example.doglogbe.model.CareTipItem;
+import com.example.doglogbe.model.*;
 import com.example.doglogbe.model.result.CommonResult;
 import com.example.doglogbe.model.result.ListResult;
 import com.example.doglogbe.model.result.SingleResult;
 import com.example.doglogbe.service.CareTipService;
 import com.example.doglogbe.service.ResponseService;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,8 +27,16 @@ public class CareTipController {
 
     //care tip 목록 조회
     @GetMapping("/all")
-    public ListResult<CareTipItem> getCareTips() {
-        return ResponseService.getListResult(careTipService.getCareTips());
+    public SingleResult<Page<CareTipItem>> getCareTips(@RequestParam int page ) {
+        Page<CareTipItem> careTipItemPage = careTipService.getCareTips(page);
+        return ResponseService.getSingleResult(careTipItemPage);
+    }
+
+    //care tip enabled true list
+    @GetMapping("/all/enabled")
+    public SingleResult<Page<CareTipItem>> getCareTipsEnabled(@RequestParam int page) {
+        Page<CareTipItem> careTipItemPage = careTipService.getCareTipsIsEnabled(page);
+        return ResponseService.getSingleResult(careTipItemPage);
     }
 
     //care tip 단일 항목 조회
@@ -50,6 +59,12 @@ public class CareTipController {
         return ResponseService.getSuccessResult();
     }
 
+    //검색 READ
+    @GetMapping("/search")
+    public SingleResult<Page<CareTipItem>> getCareTipsBySearch(@ModelAttribute CareTipSearchRequest request) {
+        Page<CareTipItem> careTipItemPage = careTipService.getCareTipBySearch(request);
+        return ResponseService.getSingleResult(careTipItemPage);
+    }
 
 
 
