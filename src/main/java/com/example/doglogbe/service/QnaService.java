@@ -129,4 +129,9 @@ public class QnaService {
         // 9. Page 객체로 리턴
         return new PageImpl<>(result, PageRequest.of(page, size), total);
     }
+
+    public QnaResponse getQna(long id) {
+        Question question = questionRepository.findById(id).orElseThrow();
+
+    }
 }

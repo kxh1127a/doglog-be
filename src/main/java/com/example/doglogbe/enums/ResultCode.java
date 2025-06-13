@@ -79,7 +79,9 @@ public enum ResultCode {
     ADMIN_ACCESS_DENIED(-8001, "관리자 접근 권한이 없습니다."),
 
     // -9000 ~ -9999: 기타(Etc)
-    UNKNOWN_ERROR(-9000, "알 수 없는 오류가 발생했습니다.");
+    UNKNOWN_ERROR(-9000, "알 수 없는 오류가 발생했습니다."),
+
+    QUESTION_NOT_FOUND(-9010, "해당 질문(문의)을 찾을 수 없습니다.");
 
     private final Integer code;
     private final String message;
