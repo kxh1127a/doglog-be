@@ -58,10 +58,10 @@ public class Member {
     private String statusReason;
 
     @Column(nullable = true)
-    private Integer totalLike;
+    private Integer totalLike = 0;
 
     @Column(nullable = true)
-    private Integer totalQuestion;
+    private Integer totalQuestion = 0;
 
     @JsonBackReference
     @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
