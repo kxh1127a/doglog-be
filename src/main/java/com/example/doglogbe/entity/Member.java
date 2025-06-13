@@ -3,6 +3,7 @@ package com.example.doglogbe.entity;
 import com.example.doglogbe.enums.MemberRole;
 import com.example.doglogbe.interfaces.CommonModelBuilder;
 import com.example.doglogbe.model.MemberCreateRequest;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -56,12 +57,15 @@ public class Member {
     @Column(nullable = true)
     private String statusReason;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Pet> pets = new ArrayList<>();
 
+    @JsonBackReference
     @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<TipLike> tips = new ArrayList<>();
 
+    @JsonBackReference
     @OneToMany(mappedBy = "member", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Question> questions = new ArrayList<>();
 

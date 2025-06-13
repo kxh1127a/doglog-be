@@ -1,6 +1,7 @@
 package com.example.doglogbe.entity;
 
 import com.example.doglogbe.enums.PetGender;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "member_id")
     private Member member;
@@ -30,6 +32,7 @@ public class Pet {
     @Column(nullable = false)
     private LocalDate birthDate;
 
+    @JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "pet_breed_id")
     private PetBreed petBreed;

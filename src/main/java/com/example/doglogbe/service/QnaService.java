@@ -133,8 +133,6 @@ public class QnaService {
 
     public QnaResponse getQna(long id) {
         Question question = questionRepository.findById(id).orElseThrow(CQuestionNotFoundException::new);
-        QnaResponse result = new QnaResponse.Builder(question).build();
-
-
+        return new QnaResponse.Builder(question).build();
     }
 }
