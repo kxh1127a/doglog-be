@@ -4,6 +4,7 @@ import com.example.doglogbe.entity.Member;
 import com.example.doglogbe.entity.Pet;
 import com.example.doglogbe.entity.PetBreed;
 import com.example.doglogbe.entity.Question;
+import com.example.doglogbe.exception.CQuestionNotFoundException;
 import com.example.doglogbe.exception.CUserNotFoundException;
 import com.example.doglogbe.model.*;
 import com.example.doglogbe.repository.AnswerRepository;
@@ -131,7 +132,9 @@ public class QnaService {
     }
 
     public QnaResponse getQna(long id) {
-        Question question = questionRepository.findById(id).orElseThrow();
+        Question question = questionRepository.findById(id).orElseThrow(CQuestionNotFoundException::new);
+        QnaResponse result = new QnaResponse.Builder(question).build();
+
 
     }
 }

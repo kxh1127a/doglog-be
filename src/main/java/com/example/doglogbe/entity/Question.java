@@ -1,10 +1,13 @@
 package com.example.doglogbe.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -32,4 +35,8 @@ public class Question {
 
     @Column(nullable = false)
     private Boolean isEnabled;
+
+    @JsonBackReference
+    @OneToOne(mappedBy = "question", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Answer answer;
 }
