@@ -1,4 +1,10 @@
 spring:
+
+  servlet: # csv 파일 크기가 커서 제한 증가할려고 추가함
+    multipart: # 기본 설정은 1MB라서 파일을 못받음
+      max-file-size: 10MB
+      max-request-size: 10MB
+
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
