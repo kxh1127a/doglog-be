@@ -1,9 +1,7 @@
 package com.example.doglogbe.controller;
 
 import com.example.doglogbe.entity.CareTipResponse;
-import com.example.doglogbe.model.CareTipCreateRequest;
-import com.example.doglogbe.model.CareTipItem;
-import com.example.doglogbe.model.MemberItem;
+import com.example.doglogbe.model.*;
 import com.example.doglogbe.model.result.CommonResult;
 import com.example.doglogbe.model.result.ListResult;
 import com.example.doglogbe.model.result.SingleResult;
@@ -61,6 +59,12 @@ public class CareTipController {
         return ResponseService.getSuccessResult();
     }
 
+    //검색 READ
+    @GetMapping("/search")
+    public SingleResult<Page<CareTipItem>> getCareTipsBySearch(@ModelAttribute CareTipSearchRequest request) {
+        Page<CareTipItem> careTipItemPage = careTipService.getCareTipBySearch(request);
+        return ResponseService.getSingleResult(careTipItemPage);
+    }
 
 
 

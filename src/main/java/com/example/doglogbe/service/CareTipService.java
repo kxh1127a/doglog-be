@@ -90,8 +90,8 @@ public class CareTipService {
 
         // 1. 쿼리 빌더와 루트 객체 생성
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Member> cq = cb.createQuery(Member.class);
-        Root<Member> root = cq.from(Member.class);
+        CriteriaQuery<CareTip> cq = cb.createQuery(CareTip.class);
+        Root<CareTip> root = cq.from(CareTip.class);
 
         // 2. 동적 where 조건을 담을 리스트 생성
         List<Predicate> predicates = new LinkedList<>();
@@ -104,13 +104,22 @@ public class CareTipService {
             predicates.add(cb.like(root.get("content"), "%" + request.getContent() + "%"));
         }
 
+        predicates.add(cb.isTrue(root.get("isEnabled")));
+
 
         // 4. 조건 적용
         cq.where(cb.and(predicates.toArray(new Predicate[0])));
 
 
+        // 5. 정렬 조건 설정
+        if(request.getDirection().equals("desc")) {
+            cq.orderBy(cb.desc(root.get(request.getSortBy())));
+        } else {
+            cq.orderBy(cb.asc(root.get(request.getSortBy())));
+        }
+
         // 6. 쿼리 실행 준비
-        TypedQuery<Member> query = entityManager.createQuery(cq);
+        TypedQuery<CareTip> query = entityManager.createQuery(cq);
 
         // 7. 페이징 처리
         int page = request.getPage();
@@ -118,23 +127,23 @@ public class CareTipService {
         query.setFirstResult(page * size);  // 몇 번째부터
         query.setMaxResults(size);          // 몇 개 가져올지
 
-        List<Member> resultList = query.getResultList();
-        List<MemberItem> result = resultList.stream()
-                .map(item -> new MemberItem.Builder(item).build())
+        List<CareTip> resultList = query.getResultList();
+        List<CareTipItem> result = resultList.stream()
+                .map(item -> new CareTipItem.Builder(item).build())
                 .collect(Collectors.toList());
 
         // 8. 전체 개수 구하는 count 쿼리 작성
         CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
-        Root<Member> countRoot = countQuery.from(Member.class);
+        Root<CareTip> countRoot = countQuery.from(CareTip.class);
         countQuery.select(cb.count(countRoot));
 
         // count 조건 동일하게 적용
         List<Predicate> countPredicates = new ArrayList<>();
         if (request.getTitle() != null && !request.getTitle().isEmpty()) {
-            countPredicates.add(cb.like(root.get("title"), "%" + request.getTitle() + "%"));
+            countPredicates.add(cb.like(countRoot.get("title"), "%" + request.getTitle() + "%"));
         }
         if (request.getContent() != null && !request.getContent().isEmpty()) {
-            countPredicates.add(cb.like(root.get("content"), "%" + request.getContent() + "%"));
+            countPredicates.add(cb.like(countRoot.get("content"), "%" + request.getContent() + "%"));
         }
 
         countQuery.where(cb.and(countPredicates.toArray(new Predicate[0])));
