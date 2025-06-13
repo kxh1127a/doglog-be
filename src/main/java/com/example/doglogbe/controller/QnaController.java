@@ -1,5 +1,6 @@
 package com.example.doglogbe.controller;
 
+import com.example.doglogbe.model.QnaCreateRequest;
 import com.example.doglogbe.model.QnaItem;
 import com.example.doglogbe.model.QnaResponse;
 import com.example.doglogbe.model.QnaSearchRequest;
@@ -27,5 +28,7 @@ public class QnaController {
     }
 
     @PostMapping("/details/answer")
-    public SingleResult<QnaResponse> setQna(@RequestBody )
+    public SingleResult<QnaResponse> setQna(@RequestBody QnaCreateRequest request) {
+        return ResponseService.getSingleResult(qnaService.setQna(request));
+    }
 }

@@ -1,9 +1,6 @@
 package com.example.doglogbe.service;
 
-import com.example.doglogbe.entity.Member;
-import com.example.doglogbe.entity.Pet;
-import com.example.doglogbe.entity.PetBreed;
-import com.example.doglogbe.entity.Question;
+import com.example.doglogbe.entity.*;
 import com.example.doglogbe.exception.CQuestionNotFoundException;
 import com.example.doglogbe.exception.CUserNotFoundException;
 import com.example.doglogbe.model.*;
@@ -136,5 +133,13 @@ public class QnaService {
         return new QnaResponse.Builder(question).build();
     }
 
+    public QnaResponse setQna(QnaCreateRequest request) {
+        Question question = questionRepository.findById(request.getQuestionId()).orElseThrow(CQuestionNotFoundException::new);
+        Answer answer = new Answer.Builder(request, question).build();
+        System.out.println(answer);
+        answerRepository.save(answer);
 
+        QnaResponse result = new QnaResponse.Builder(question).build();
+        return result;
+    }
 }
