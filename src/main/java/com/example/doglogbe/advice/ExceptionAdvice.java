@@ -32,4 +32,11 @@ public class ExceptionAdvice {
     protected CommonResult customException(HttpServletRequest request, CUserNotFoundException e) {
         return ResponseService.getFailResult(ResultCode.USER_NOT_FOUND);
     }
+
+    // 해당 질문(문의)을 찾을 수 없습니다.
+    @ExceptionHandler(CQuestionNotFoundException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CQuestionNotFoundException e) {
+        return ResponseService.getFailResult(ResultCode.QUESTION_NOT_FOUND);
+    }
 }
