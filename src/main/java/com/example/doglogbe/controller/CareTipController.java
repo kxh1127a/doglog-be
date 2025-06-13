@@ -34,6 +34,13 @@ public class CareTipController {
         return ResponseService.getSingleResult(careTipItemPage);
     }
 
+    //care tip enabled true list
+    @GetMapping("/all/enabled")
+    public SingleResult<Page<CareTipItem>> getCareTipsEnabled(@RequestParam int page) {
+        Page<CareTipItem> careTipItemPage = careTipService.getCareTipsIsEnabled(page);
+        return ResponseService.getSingleResult(careTipItemPage);
+    }
+
     //care tip 단일 항목 조회
     @GetMapping("/detail")
     public SingleResult<CareTipResponse> getCareTip(@RequestParam long careTipId) {

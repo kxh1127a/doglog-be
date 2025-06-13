@@ -39,6 +39,17 @@ public class CareTipService {
         return new PageImpl<>(careTipItems, pageable, careTips.getTotalElements());
     }
 
+    //care tip 전체 목록 중 isEnabled가 true인 가져오기(isEnabled true)
+    public Page<CareTipItem> getCareTipsIsEnabled(int page) {
+        Pageable pageable = PageRequest.of(page, 10);
+        Page<CareTip> careTips = careTipRepository.findAllByIsEnabled(true, pageable);
+        List<CareTipItem> careTipItems = new LinkedList<>();
+        for( CareTip careTip: careTips ) {
+            careTipItems.add(new CareTipItem.Builder(careTip).build());
+        }
+        return new PageImpl<>(careTipItems, pageable, careTips.getTotalElements());
+    }
+
     //care tip 단일 항목 가져오기
     public CareTipResponse getCareTip(long id){
         CareTip careTip = careTipRepository.findById(id).orElseThrow(CCareTipNotFoundException::new);
