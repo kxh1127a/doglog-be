@@ -1,8 +1,7 @@
 package com.example.doglogbe.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.example.doglogbe.enums.CareTipCategory;
+import jakarta.persistence.*;
 import lombok.Getter;
 import org.hibernate.annotations.Immutable;
 
@@ -12,5 +11,7 @@ import org.hibernate.annotations.Immutable;
 @Getter
 public class CareTipCategoryActive {
     @Id
-    private Long id;
+    @Enumerated(EnumType.STRING) // 또는 EnumType.ORDINAL, DB와 일치하게
+    @Column(name = "care_tip_category")
+    private CareTipCategory careTipCategory;
 }
