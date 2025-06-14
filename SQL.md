@@ -43,3 +43,17 @@ alter function do_like(bigint, bigint, boolean) owner to postgres;
 
 
 ```
+
+
+# 뷰테이블
+
+##### 활성화된 케어팁 카테고리 가져오기 (글이 하나라도 있는 것만)
+```sql
+CREATE OR REPLACE VIEW enabled_caretip_category AS
+SELECT
+	ct.care_tip_category
+FROM care_tip ct
+GROUP BY
+	ct.care_tip_category;
+
+```
