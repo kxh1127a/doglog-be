@@ -1,14 +1,15 @@
 package com.example.doglogbe.service;
 
 import com.example.doglogbe.entity.CareTip;
+import com.example.doglogbe.entity.CareTipCategoryActive;
 import com.example.doglogbe.entity.CareTipResponse;
 import com.example.doglogbe.entity.Member;
 import com.example.doglogbe.exception.CCareTipNotFoundException;
-import com.example.doglogbe.model.CareTipCreateRequest;
-import com.example.doglogbe.model.CareTipItem;
-import com.example.doglogbe.model.CareTipSearchRequest;
-import com.example.doglogbe.model.MemberItem;
+import com.example.doglogbe.model.*;
+import com.example.doglogbe.model.result.ListResult;
+import com.example.doglogbe.repository.CareTipCategoryActiveRepository;
 import com.example.doglogbe.repository.CareTipRepository;
+import com.example.doglogbe.repository.MemberRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -22,6 +23,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -33,6 +35,7 @@ import java.util.stream.Collectors;
 public class CareTipService {
 
     private final CareTipRepository careTipRepository;
+    private final CareTipCategoryActiveRepository careTipCategoryActiveRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -154,7 +157,14 @@ public class CareTipService {
 
     }
 
-
+    public List<ActiveCareTipCategory> getCareTipCategoryActive() {
+        List<CareTipCategoryActive> careTipCategoryActives = careTipCategoryActiveRepository.findAll();
+        List<ActiveCareTipCategory> activeCareTipCategories = new LinkedList<>();
+        for(CareTipCategoryActive careTipCategoryActive: careTipCategoryActives) {
+            activeCareTipCategories.add(new ActiveCareTipCategory.Builder(careTipCategoryActive).build());
+        }
+        return activeCareTipCategories;
+    }
 
 
 
