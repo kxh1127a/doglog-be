@@ -66,16 +66,18 @@ public class CareTipController {
         return ResponseService.getSingleResult(careTipItemPage);
     }
 
-
     @GetMapping("/category")
     public ListResult<ActiveCareTipCategory> getActiveCareTipCategory() {
         return ResponseService.getListResult(careTipService.getCareTipCategoryActive());
     }
 
-
-
-
-
-
+    // 카테고리별 케어팁 목록 조회
+    @GetMapping("/category/list")
+    public SingleResult<Page<CareTipItem>> getCareTipsByCategory(
+            @RequestParam(required = false, defaultValue = "") String category,
+            @RequestParam(defaultValue = "0") int page) {
+        Page<CareTipItem> careTipItemPage = careTipService.getCareTipsByCategory(category, page);
+        return ResponseService.getSingleResult(careTipItemPage);
+    }
 
 }

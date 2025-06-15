@@ -4,6 +4,7 @@ import com.example.doglogbe.entity.CareTip;
 import com.example.doglogbe.entity.CareTipCategoryActive;
 import com.example.doglogbe.entity.CareTipResponse;
 import com.example.doglogbe.entity.Member;
+import com.example.doglogbe.enums.CareTipCategory;
 import com.example.doglogbe.exception.CCareTipNotFoundException;
 import com.example.doglogbe.model.*;
 import com.example.doglogbe.model.result.ListResult;
@@ -166,6 +167,71 @@ public class CareTipService {
         return activeCareTipCategories;
     }
 
+    // 카테고리별 케어팁 목록 조회
+    public Page<CareTipItem> getCareTipsByCategory(String category, int page) {
+        final int PAGE_SIZE = 10;
+        
+        // 1. 쿼리 빌더와 루트 객체 생성
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<CareTip> cq = cb.createQuery(CareTip.class);
+        Root<CareTip> root = cq.from(CareTip.class);
 
+        // 2. 동적 where 조건을 담을 리스트 생성
+        List<Predicate> predicates = new LinkedList<>();
+
+        // 3. 조건 생성
+        if (category != null && !category.isEmpty()) {
+            try {
+                CareTipCategory categoryEnum = CareTipCategory.valueOf(category);
+                predicates.add(cb.equal(root.get("careTipCategory"), categoryEnum));
+            } catch (IllegalArgumentException e) {
+                // 잘못된 카테고리명이 들어온 경우 빈 결과 반환
+                return new PageImpl<>(new ArrayList<>(), PageRequest.of(page, PAGE_SIZE), 0L);
+            }
+        }
+        predicates.add(cb.isTrue(root.get("isEnabled")));
+
+        // 4. 조건 적용
+        cq.where(cb.and(predicates.toArray(new Predicate[0])));
+
+        // 5. 정렬 조건 설정 (최신순)
+        cq.orderBy(cb.desc(root.get("editDate")));
+
+        // 6. 쿼리 실행 준비
+        TypedQuery<CareTip> query = entityManager.createQuery(cq);
+
+        // 7. 페이징 처리
+        query.setFirstResult(page * PAGE_SIZE);
+        query.setMaxResults(PAGE_SIZE);
+
+        List<CareTip> resultList = query.getResultList();
+        List<CareTipItem> result = resultList.stream()
+                .map(item -> new CareTipItem.Builder(item).build())
+                .collect(Collectors.toList());
+
+        // 8. 전체 개수 구하는 count 쿼리 작성
+        CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
+        Root<CareTip> countRoot = countQuery.from(CareTip.class);
+        countQuery.select(cb.count(countRoot));
+
+        // count 조건 동일하게 적용
+        List<Predicate> countPredicates = new ArrayList<>();
+        if (category != null && !category.isEmpty()) {
+            try {
+                CareTipCategory categoryEnum = CareTipCategory.valueOf(category);
+                countPredicates.add(cb.equal(countRoot.get("careTipCategory"), categoryEnum));
+            } catch (IllegalArgumentException e) {
+                // 잘못된 카테고리명이 들어온 경우 0 반환
+                return new PageImpl<>(new ArrayList<>(), PageRequest.of(page, PAGE_SIZE), 0L);
+            }
+        }
+        countPredicates.add(cb.isTrue(countRoot.get("isEnabled")));
+
+        countQuery.where(cb.and(countPredicates.toArray(new Predicate[0])));
+        Long total = entityManager.createQuery(countQuery).getSingleResult();
+
+        // 9. Page 객체로 리턴
+        return new PageImpl<>(result, PageRequest.of(page, PAGE_SIZE), total);
+    }
 
 }
