@@ -5,7 +5,6 @@ import com.example.doglogbe.interfaces.CommonModelBuilder;
 import lombok.*;
 
 @Getter
-@RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ActiveCareTipCategory {
     private String categoryName;

@@ -67,6 +67,12 @@ public class CareTipController {
     }
 
 
+    @GetMapping("/category")
+    public ListResult<ActiveCareTipCategory> getActiveCareTipCategory() {
+        return ResponseService.getListResult(careTipService.getCareTipCategoryActive());
+    }
+
+
 
 
 
