@@ -17,7 +17,7 @@ public class ActiveCareTipCategory {
         private final String categoryName;
 
         public Builder(CareTipCategoryActive careTipCategoryActive){
-            this.categoryName = careTipCategoryActive.getCareTipCategory().toString();
+            this.categoryName = careTipCategoryActive.getCareTipCategory().getName();
         }
 
         @Override
