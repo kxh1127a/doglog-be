@@ -16,6 +16,8 @@ import java.time.LocalDate;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CareTip {
+    private static final String DEFAULT_IMAGE_URL = "/upload/caretip/default.jpg";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,11 +43,15 @@ public class CareTip {
     @Column
     private Boolean isEnabled = true;
 
+    @Column(length = 500)
+    private String imgUrl = DEFAULT_IMAGE_URL;
+
     private CareTip(Builder builder) {
         this.careTipCategory = builder.careTipCategory;
         this.title = builder.title;
         this.content = builder.content;
         this.editDate = builder.editDate;
+        this.imgUrl = builder.imgUrl != null ? builder.imgUrl : DEFAULT_IMAGE_URL;
     }
 
     public static class Builder implements CommonModelBuilder<CareTip> {
@@ -54,12 +60,14 @@ public class CareTip {
         private final String title;
         private final String content;
         private final LocalDate editDate;
+        private String imgUrl;
 
         public Builder(CareTipCreateRequest careTipCreateRequest) {
             this.careTipCategory = careTipCreateRequest.getCareTipCategory();
             this.title = careTipCreateRequest.getTitle();
             this.content = careTipCreateRequest.getContent();
             this.editDate = LocalDate.now();
+            this.imgUrl = careTipCreateRequest.getImgUrl();
         }
 
         @Override
