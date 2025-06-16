@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CareTip {
-    private static final String DEFAULT_IMAGE_URL = "/upload/caretip/default.jpg";
+    private static final String DEFAULT_IMAGE_URL = "/uploads/caretip/default.jpg";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
