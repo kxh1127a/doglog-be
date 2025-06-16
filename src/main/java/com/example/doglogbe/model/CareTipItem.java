@@ -17,6 +17,7 @@ public class CareTipItem {
     private Integer careTipLike;
     private Boolean recommend;
     private Boolean isEnabled;
+    private String imgUrl;
 
     private CareTipItem(Builder builder){
         this.id = builder.id;
@@ -25,6 +26,7 @@ public class CareTipItem {
         this.careTipLike = builder.careTipLike;
         this.recommend = builder.recommend;
         this.isEnabled = builder.isEnabled;
+        this.imgUrl = builder.imgUrl;
     }
 
     public static class Builder implements CommonModelBuilder<CareTipItem> {
@@ -34,6 +36,7 @@ public class CareTipItem {
         private final Integer careTipLike;
         private final Boolean recommend;
         private final Boolean isEnabled;
+        private final String imgUrl;
 
         public Builder(CareTip careTip){
             this.id = careTip.getId();
@@ -42,6 +45,7 @@ public class CareTipItem {
             this.careTipLike = careTip.getCareTipLike();
             this.recommend = careTip.getRecommend();
             this.isEnabled = careTip.getIsEnabled();
+            this.imgUrl = careTip.getImgUrl();
         }
 
         @Override

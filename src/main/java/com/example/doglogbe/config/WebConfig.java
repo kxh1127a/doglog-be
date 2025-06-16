@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class WebConfig {
+public class WebConfig implements WebMvcConfigurer {
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -26,9 +26,8 @@ public class WebConfig {
             // 이미지 파일 경로
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
-                // /uploads/** 요청을 -> 실제 경로로 매핑
                 registry.addResourceHandler("/uploads/**")
-                        .addResourceLocations("file:/Users/hkb/doglog/doglog-be/uploads/");
+                        .addResourceLocations("file:uploads/");
             }
         };
     }
