@@ -1,7 +1,11 @@
 package com.example.doglogbe.controller;
 
+import com.example.doglogbe.entity.CareTip;
 import com.example.doglogbe.entity.CareTipResponse;
-import com.example.doglogbe.model.*;
+import com.example.doglogbe.model.CareTipCreateRequest;
+import com.example.doglogbe.model.CareTipItem;
+import com.example.doglogbe.model.CareTipSearchRequest;
+import com.example.doglogbe.model.ActiveCareTipCategory;
 import com.example.doglogbe.model.result.CommonResult;
 import com.example.doglogbe.model.result.ListResult;
 import com.example.doglogbe.model.result.SingleResult;
@@ -11,25 +15,33 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/caretip")
 public class CareTipController {
     private final CareTipService careTipService;
+    private final ResponseService responseService;
 
     //care tip 생성 (create)
     @PostMapping("/new")
-    public CommonResult setCareTip(CareTipCreateRequest careTipCreateRequest) {
-        careTipService.setCareTip(careTipCreateRequest);
+    public CommonResult createCareTip(
+            @RequestPart("careTip") CareTipCreateRequest careTipCreateRequest,
+            @RequestPart(value = "image", required = false) MultipartFile image) {
+        CareTip careTip = careTipService.createCareTip(careTipCreateRequest, image);
         return ResponseService.getSuccessResult();
     }
 
     //care tip 목록 조회
     @GetMapping("/all")
-    public SingleResult<Page<CareTipItem>> getCareTips(@RequestParam int page ) {
-        Page<CareTipItem> careTipItemPage = careTipService.getCareTips(page);
-        return ResponseService.getSingleResult(careTipItemPage);
+    public ListResult<CareTipItem> getCareTips(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "editDate") String sortBy,
+            @RequestParam(defaultValue = "desc") String direction) {
+        Page<CareTipItem> careTips = careTipService.getCareTips(page, size, sortBy, direction);
+        return responseService.getListResult(careTips.getContent());
     }
 
     //care tip enabled true list
@@ -61,14 +73,14 @@ public class CareTipController {
 
     //검색 READ
     @GetMapping("/search")
-    public SingleResult<Page<CareTipItem>> getCareTipsBySearch(@ModelAttribute CareTipSearchRequest request) {
-        Page<CareTipItem> careTipItemPage = careTipService.getCareTipBySearch(request);
-        return ResponseService.getSingleResult(careTipItemPage);
+    public ListResult<CareTipItem> searchCareTips(CareTipSearchRequest searchRequest) {
+        Page<CareTipItem> careTips = careTipService.searchCareTips(searchRequest);
+        return responseService.getListResult(careTips.getContent());
     }
 
     @GetMapping("/category")
     public ListResult<ActiveCareTipCategory> getActiveCareTipCategory() {
-        return ResponseService.getListResult(careTipService.getCareTipCategoryActive());
+        return responseService.getListResult(careTipService.getCareTipCategoryActive());
     }
 
     // 카테고리별 케어팁 목록 조회

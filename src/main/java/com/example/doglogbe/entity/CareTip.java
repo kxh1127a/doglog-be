@@ -67,13 +67,16 @@ public class CareTip {
             this.title = careTipCreateRequest.getTitle();
             this.content = careTipCreateRequest.getContent();
             this.editDate = LocalDate.now();
-            this.imgUrl = careTipCreateRequest.getImgUrl();
+        }
+
+        public Builder imgUrl(String imgUrl) {
+            this.imgUrl = imgUrl;
+            return this;
         }
 
         @Override
         public CareTip build() {
             return new CareTip(this);
         }
-
     }
 }

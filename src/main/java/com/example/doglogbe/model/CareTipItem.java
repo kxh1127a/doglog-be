@@ -53,7 +53,10 @@ public class CareTipItem {
             return new CareTipItem(this);
         }
 
+    }
 
+    public static CareTipItem from(CareTip careTip) {
+        return new Builder(careTip).build();
     }
 
 }

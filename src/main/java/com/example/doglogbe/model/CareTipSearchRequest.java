@@ -1,5 +1,6 @@
 package com.example.doglogbe.model;
 
+import com.example.doglogbe.model.ActiveCareTipCategory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,13 +11,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CareTipSearchRequest {
-    private int page;
-    private int size;
-
     private String title;
     private String content;
-
-    private String sortBy;
-    private String direction;
-    private String filter;
+    private ActiveCareTipCategory category;
+    private int page = 0;
+    private int size = 10;
+    private String sortBy = "editDate";
+    private String direction = "desc";
 }
