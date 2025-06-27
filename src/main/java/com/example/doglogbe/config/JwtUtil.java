@@ -20,7 +20,7 @@ public class JwtUtil {
 
     public JwtUtil(
             @Value("${jwt.secret}") String secretKey,
-            @Value("${jwt.exp}") long tokenExp
+            @Value("${jwt.expiration}") long tokenExp
     ) {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         this.key = Keys.hmacShaKeyFor(keyBytes);
@@ -75,6 +75,4 @@ public class JwtUtil {
             return e.getClaims();
         }
     }
-
-
 }
