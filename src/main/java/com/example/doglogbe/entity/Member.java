@@ -1,17 +1,14 @@
 package com.example.doglogbe.entity;
 
 import com.example.doglogbe.enums.MemberRole;
-import com.example.doglogbe.interfaces.CommonModelBuilder;
-import com.example.doglogbe.model.MemberCreateRequest;
+import com.example.doglogbe.model.JoinRequest;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,34 +73,15 @@ public class Member {
     private List<Question> questions = new ArrayList<>();
 
 
-    private Member(Builder builder) {
-        this.name = builder.name;
-        this.userName = builder.userName;
-        this.password = builder.password;
-        this.phone = builder.phone;
-        this.email = builder.email;
+    @Builder
+    public Member(JoinRequest joinRequest, String encodePassword, MemberRole role) {
+        this.role = role;
+        this.name = joinRequest.name();
+        this.userName = joinRequest.userName();
+        this.password = encodePassword;
+        this.phone = joinRequest.phone();
+        this.email = joinRequest.email();
         this.createdAt = LocalDateTime.now();
-        this.lastLoginAt = LocalDateTime.now();
-    }
-
-    public static class Builder implements CommonModelBuilder<Member> {
-        private final String name;
-        private final String userName;
-        private final String password;
-        private final String phone;
-        private final String email;
-
-        public Builder (MemberCreateRequest request) {
-            this.name = request.getName();
-            this.userName = request.getUserName();
-            this.password = request.getPassword();
-            this.phone = request.getPhone();
-            this.email = request.getEmail();
-        }
-
-        @Override
-        public Member build() {
-            return new Member(this);
-        }
+        this.isEnabled = true;
     }
 }

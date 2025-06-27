@@ -33,10 +33,10 @@ public class MemberService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    // 멤버 등록 기능 구체화 필요 (jwt, 중복방지, 정규식 등등)
-    public void setMember(MemberCreateRequest memberCreateRequest) {
-        memberRepository.save(new Member.Builder(memberCreateRequest).build());
-    }
+//    // 멤버 등록 기능 구체화 필요 (jwt, 중복방지, 정규식 등등)
+//    public void setMember(MemberCreateRequest memberCreateRequest) {
+//        memberRepository.save(new Member.Builder(memberCreateRequest).build());
+//    }
 
     public Page<MemberItem> getMembers(int page, int size, String sortBy, String direction, String filter) {
         Sort sort = direction.equals("desc")
