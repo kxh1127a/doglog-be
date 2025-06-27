@@ -33,6 +33,7 @@ spring:
 jwt:
   secret: bXktc2VjcmV0LWtleS1zdXBlci1zZWNyZXQtMTIzNDU2  # my-secret-key-super-secret-123456
   expiration: 3600000 # 1시간
+
 server:
   port: 8089
 
