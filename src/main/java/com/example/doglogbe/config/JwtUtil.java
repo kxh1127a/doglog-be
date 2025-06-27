@@ -1,9 +1,7 @@
 package com.example.doglogbe.config;
 
 import com.example.doglogbe.entity.Member;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 //import lombok.Value;
@@ -46,7 +44,37 @@ public class JwtUtil {
                 .setClaims(claims)
                 .setIssuedAt(Date.from(now.toInstant()))
                 .setExpiration(Date.from(tokenValidity.toInstant()))
-                .signWith(key, SignatureAlgorithm.ES256)
+                .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
+
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+            return true;
+        } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
+            System.out.println("Invalid JWT Token");
+        } catch (ExpiredJwtException e) {
+            System.out.println("Expired JWT Token");
+        } catch (UnsupportedJwtException e) {
+            System.out.println("Unsupported JWT Token");
+        } catch (IllegalArgumentException e) {
+            System.out.println("JWT claims string is empty");
+        }
+        return false;
+    }
+
+    public Long getUserId(String token) {
+        return parseClaims(token).get("memberId", Long.class);
+    }
+
+    public Claims parseClaims(String accessToken) {
+        try {
+            return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody();
+        } catch (ExpiredJwtException e) {
+            return e.getClaims();
+        }
+    }
+
+
 }
