@@ -39,4 +39,11 @@ public class ExceptionAdvice {
     protected CommonResult customException(HttpServletRequest request, CQuestionNotFoundException e) {
         return ResponseService.getFailResult(ResultCode.QUESTION_NOT_FOUND);
     }
+
+    // 이미 사용 중인 아이디입니다.
+    @ExceptionHandler(CDuplicateUsernameException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CDuplicateUsernameException e) {
+        return ResponseService.getFailResult(ResultCode.DUPLICATE_USERNAME);
+    }
 }

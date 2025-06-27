@@ -19,7 +19,7 @@ public enum ResultCode {
     USER_NOT_FOUND(-1001, "사용자를 찾을 수 없습니다."),
     INVALID_PASSWORD(-1002, "비밀번호가 일치하지 않습니다."),
     INVALID_EMAIL_FORMAT(-1003, "이메일 형식이 올바르지 않습니다."),
-    DUPLICATE_NICKNAME(-1004, "이미 사용 중인 닉네임입니다."),
+    DUPLICATE_USERNAME(-1004, "이미 사용 중인 아이디입니다."),
     EMAIL_VERIFICATION_REQUIRED(-1005, "이메일 인증이 필요합니다."),
     EMAIL_VERIFICATION_FAILED(-1006, "이메일 인증에 실패했습니다."),
     ACCOUNT_DISABLED(-1007, "비활성화된 계정입니다."),
