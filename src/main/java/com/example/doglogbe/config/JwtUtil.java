@@ -64,8 +64,8 @@ public class JwtUtil {
         return false;
     }
 
-    public Long getUserId(String token) {
-        return parseClaims(token).get("memberId", Long.class);
+    public String getUsername(String token) {
+        return parseClaims(token).get("username", String.class);
     }
 
     public Claims parseClaims(String accessToken) {
