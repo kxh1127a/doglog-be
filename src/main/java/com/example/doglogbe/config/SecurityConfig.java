@@ -12,5 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 public class SecurityConfig {
     private final CustomUserDetailsService customUserDetailsService;
     private final JwtUtil jwtUtil;
-    private final CustomAccessDe
+    private final CustomAccessDeniedHandler accessDeniedHandler;
+    private final CustomAuthenticationEntryPoint authenticationEntryPoint;
 }
