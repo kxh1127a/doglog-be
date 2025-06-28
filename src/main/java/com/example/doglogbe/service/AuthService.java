@@ -3,10 +3,7 @@ package com.example.doglogbe.service;
 import com.example.doglogbe.config.JwtUtil;
 import com.example.doglogbe.entity.Member;
 import com.example.doglogbe.enums.MemberRole;
-import com.example.doglogbe.exception.CCareTipNotFoundException;
-import com.example.doglogbe.exception.CDuplicateEmailException;
-import com.example.doglogbe.exception.CDuplicatePhoneException;
-import com.example.doglogbe.exception.CDuplicateUsernameException;
+import com.example.doglogbe.exception.*;
 import com.example.doglogbe.model.JoinRequest;
 import com.example.doglogbe.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +36,9 @@ public class AuthService {
             throw new CDuplicatePhoneException();
         }
 
-
+        if (!request.password().equals(request.rePassword())) {
+            throw new CInvalidPasswordException();
+        }
 
         String encodedPassword = passwordEncoder.encode(request.password());
 

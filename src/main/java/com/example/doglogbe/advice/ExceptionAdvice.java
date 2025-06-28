@@ -60,4 +60,11 @@ public class ExceptionAdvice {
     protected CommonResult customException(HttpServletRequest request, CDuplicatePhoneException e) {
         return ResponseService.getFailResult(ResultCode.DUPLICATE_PHONE);
     }
+
+    // 비밀번호가 일치하지 않습니다.
+    @ExceptionHandler(CInvalidPasswordException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CInvalidPasswordException e) {
+        return ResponseService.getFailResult(ResultCode.INVALID_PASSWORD);
+    }
 }
