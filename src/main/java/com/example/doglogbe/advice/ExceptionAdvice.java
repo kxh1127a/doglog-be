@@ -46,4 +46,18 @@ public class ExceptionAdvice {
     protected CommonResult customException(HttpServletRequest request, CDuplicateUsernameException e) {
         return ResponseService.getFailResult(ResultCode.DUPLICATE_USERNAME);
     }
+
+    // 이미 사용 중인 이메일입니다.
+    @ExceptionHandler(CDuplicateEmailException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CDuplicateEmailException e) {
+        return ResponseService.getFailResult(ResultCode.DUPLICATE_EMAIL);
+    }
+
+    // 이미 사용 중인 핸드폰입니다.
+    @ExceptionHandler(CDuplicatePhoneException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CDuplicatePhoneException e) {
+        return ResponseService.getFailResult(ResultCode.DUPLICATE_PHONE);
+    }
 }
