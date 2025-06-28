@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/auth-test")
-public class AuthTestController {
+@RequestMapping("/auth")
+public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/join")

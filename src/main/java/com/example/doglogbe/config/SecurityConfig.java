@@ -55,7 +55,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(AUTH_WHITELIST).permitAll()
                 .requestMatchers("/auth-test/admin/**").hasRole("ADMIN")
-//                .requestMatchers("/auth-test/user/**").hasRole("USER")
+                .requestMatchers("/auth-test/user/**").hasRole("USER")
                 .anyRequest().authenticated()
         );
 
