@@ -23,7 +23,7 @@ public class SecurityConfig {
     private final CustomAuthenticationEntryPoint authenticationEntryPoint;
 
     private static final String[] AUTH_WHITELIST = {
-            "/**",
+//            "/**",
             "/swagger-ui/**",
             "/api-docs",
             "/swagger-ui-custom.html",
@@ -31,7 +31,8 @@ public class SecurityConfig {
             "/api-docs/**",
             "/swagger-ui.html",
 
-            "/auth-test/join" // 유저 회원가입
+            "/auth/join", // 유저 회원가입
+//            "/auth/admin/join" // 관리자 가입(테스트용)
     };
 
     @Bean
@@ -54,8 +55,8 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers(AUTH_WHITELIST).permitAll()
-                .requestMatchers("/auth-test/admin/**").hasRole("ADMIN")
-                .requestMatchers("/auth-test/user/**").hasRole("USER")
+                .requestMatchers("/auth/admin/**").hasRole("ADMIN")
+                .requestMatchers("/auth/user/**").hasRole("USER")
                 .anyRequest().authenticated()
         );
 

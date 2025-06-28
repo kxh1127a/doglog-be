@@ -5,7 +5,7 @@ import com.example.doglogbe.entity.Member;
 import com.example.doglogbe.enums.MemberRole;
 import com.example.doglogbe.exception.*;
 import com.example.doglogbe.lib.CommonCheck;
-import com.example.doglogbe.model.JoinRequest;
+import com.example.doglogbe.model.AuthJoinRequest;
 import com.example.doglogbe.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,22 +19,22 @@ public class AuthService {
     private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
 
-    public void doJoinAsUser(JoinRequest request) {
+    public void doJoinAsUser(AuthJoinRequest request) {
         validateJoinRequest(request);
         registerMember(request, MemberRole.USER);
     }
 
-    public void doJoinAsAdmin(JoinRequest request) {
+    public void doJoinAsAdmin(AuthJoinRequest request) {
         validateJoinRequest(request);
         registerMember(request, MemberRole.ADMIN);
     }
 
     // 회원 등록
-    private void registerMember(JoinRequest request, MemberRole role) {
+    private void registerMember(AuthJoinRequest request, MemberRole role) {
         String encodedPassword = passwordEncoder.encode(request.password());
 
         Member member = Member.builder()
-                .joinRequest(request)
+                .authJoinRequest(request)
                 .encodePassword(encodedPassword)
                 .role(role)
                 .build();
@@ -43,13 +43,13 @@ public class AuthService {
     }
 
     // 회원가입 유효성 검사
-    private void validateJoinRequest(JoinRequest request) {
+    private void validateJoinRequest(AuthJoinRequest request) {
         validateDuplicate(request);
         validatePassword(request);
         validateFormat(request);
     }
 
-    private void validateDuplicate(JoinRequest request) {
+    private void validateDuplicate(AuthJoinRequest request) {
         if (memberRepository.existsByUserName(request.userName())) {
             throw new CDuplicateUsernameException();
         }
@@ -61,7 +61,7 @@ public class AuthService {
         }
     }
 
-    private void validatePassword(JoinRequest request) {
+    private void validatePassword(AuthJoinRequest request) {
         if (!request.password().equals(request.rePassword())) {
             throw new CInvalidPasswordException();
         }
@@ -70,7 +70,7 @@ public class AuthService {
         }
     }
 
-    private void validateFormat(JoinRequest request) {
+    private void validateFormat(AuthJoinRequest request) {
         if (!CommonCheck.checkUsername(request.userName())) {
             throw new CInvalidUsernameFormatException();
         }

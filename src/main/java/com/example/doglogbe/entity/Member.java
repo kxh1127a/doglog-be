@@ -1,14 +1,11 @@
 package com.example.doglogbe.entity;
 
 import com.example.doglogbe.enums.MemberRole;
-import com.example.doglogbe.model.JoinRequest;
+import com.example.doglogbe.model.AuthJoinRequest;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.DynamicInsert;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,13 +71,13 @@ public class Member {
 
 
     @Builder
-    public Member(JoinRequest joinRequest, String encodePassword, MemberRole role) {
+    public Member(AuthJoinRequest authJoinRequest, String encodePassword, MemberRole role) {
         this.role = role;
-        this.name = joinRequest.name();
-        this.userName = joinRequest.userName();
+        this.name = authJoinRequest.name();
+        this.userName = authJoinRequest.userName();
         this.password = encodePassword;
-        this.phone = joinRequest.phone();
-        this.email = joinRequest.email();
+        this.phone = authJoinRequest.phone();
+        this.email = authJoinRequest.email();
         this.createdAt = LocalDateTime.now();
         this.isEnabled = true;
     }

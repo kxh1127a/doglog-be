@@ -2,15 +2,13 @@ package com.example.doglogbe.config;
 
 import com.example.doglogbe.entity.Member;
 import com.example.doglogbe.enums.MemberRole;
-import com.example.doglogbe.model.JoinRequest;
+import com.example.doglogbe.model.AuthJoinRequest;
 import com.example.doglogbe.repository.MemberRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
-import java.time.LocalDateTime;
 
 @Component
 @RequiredArgsConstructor
@@ -22,7 +20,7 @@ public class InitAdmin {
     @PostConstruct
     public void initAdmin() {
         if (!memberRepository.existsByUserName("admin")) {
-            JoinRequest initRequest = new JoinRequest(
+            AuthJoinRequest initRequest = new AuthJoinRequest(
                     "관리자",
                     "admin",
                     "admin1234",
@@ -34,7 +32,7 @@ public class InitAdmin {
             String encoded = passwordEncoder.encode("admin1234");
 
             Member admin = Member.builder()
-                    .joinRequest(initRequest)
+                    .authJoinRequest(initRequest)
                     .encodePassword(encoded)
                     .role(MemberRole.ADMIN)
                     .build();

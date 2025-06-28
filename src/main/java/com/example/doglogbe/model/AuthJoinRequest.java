@@ -1,6 +1,6 @@
 package com.example.doglogbe.model;
 
-public record JoinRequest(
+public record AuthJoinRequest(
         String name,
         String userName,
         String password,
