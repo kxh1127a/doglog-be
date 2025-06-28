@@ -6,6 +6,8 @@ import com.example.doglogbe.enums.MemberRole;
 import com.example.doglogbe.exception.*;
 import com.example.doglogbe.lib.CommonCheck;
 import com.example.doglogbe.model.AuthJoinRequest;
+import com.example.doglogbe.model.AuthLoginRequest;
+import com.example.doglogbe.model.AuthLoginResponse;
 import com.example.doglogbe.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -80,5 +82,15 @@ public class AuthService {
         if (!CommonCheck.checkPhone(request.phone())) {
             throw new CInvalidPhoneFormatException();
         }
+    }
+
+    public AuthLoginResponse doLogin(AuthLoginRequest authLoginRequest) {
+        Member member = memberRepository.findByUserName(authLoginRequest.username()).orElseThrow(CUserNotFoundException::new);
+        if(!passwordEncoder.matches(authLoginRequest.password(), member.getPassword())) {
+            throw new CInvalidPasswordException();
+        }
+
+        String token = jwtUtil.createAccessToken(member);
+        return new AuthLoginResponse(token);
     }
 }

@@ -1,6 +1,8 @@
 package com.example.doglogbe.controller;
 
 import com.example.doglogbe.model.AuthJoinRequest;
+import com.example.doglogbe.model.AuthLoginRequest;
+import com.example.doglogbe.model.AuthLoginResponse;
 import com.example.doglogbe.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final AuthService authService;
 
+    @Operation(summary = "유저 생성")
     @PostMapping("/join")
     public String userJoin(@RequestBody AuthJoinRequest authJoinRequest) {
         authService.doJoinAsUser(authJoinRequest);
@@ -29,6 +32,11 @@ public class AuthController {
     public String adminJoin(@RequestBody AuthJoinRequest authJoinRequest) {
         authService.doJoinAsAdmin(authJoinRequest);
         return "관리자 생성 완료";
+    }
+
+    @PostMapping("/login")
+    public AuthLoginResponse doLogin(@RequestBody AuthLoginRequest authLoginRequest) {
+        return authService.doLogin(authLoginRequest);
     }
 
 

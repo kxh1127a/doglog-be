@@ -23,7 +23,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String authorizationHeader = request.getHeader("Authorization");
 
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            String token = authorizationHeader.substring(7);
+//            System.out.println("Authorization Header 원본: [" + authorizationHeader + "]");
+            String token = authorizationHeader.substring(7).trim();
+            System.out.println("받은 JWT 토큰: [" + token + "]");
+
             if (jwtUtil.validateToken(token)) {
                 String username = jwtUtil.getUsername(token);
                 UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
