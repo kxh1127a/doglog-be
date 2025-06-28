@@ -4,6 +4,8 @@ import com.example.doglogbe.config.JwtUtil;
 import com.example.doglogbe.entity.Member;
 import com.example.doglogbe.enums.MemberRole;
 import com.example.doglogbe.exception.CCareTipNotFoundException;
+import com.example.doglogbe.exception.CDuplicateEmailException;
+import com.example.doglogbe.exception.CDuplicatePhoneException;
 import com.example.doglogbe.exception.CDuplicateUsernameException;
 import com.example.doglogbe.model.JoinRequest;
 import com.example.doglogbe.repository.MemberRepository;
@@ -30,6 +32,13 @@ public class AuthService {
         if (memberRepository.existsByUserName(request.userName())) {
             throw new CDuplicateUsernameException();
         }
+        if (memberRepository.existsByEmail(request.email())) {
+            throw new CDuplicateEmailException();
+        }
+        if (memberRepository.existsByPhone(request.phone())) {
+            throw new CDuplicatePhoneException();
+        }
+
 
 
         String encodedPassword = passwordEncoder.encode(request.password());

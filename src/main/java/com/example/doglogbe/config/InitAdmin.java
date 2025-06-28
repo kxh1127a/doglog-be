@@ -26,6 +26,7 @@ public class InitAdmin {
                     "관리자",
                     "admin",
                     "admin1234",
+                    "admin1234",
                     "010-0000-0000",
                     "admin@example.com"
             );
