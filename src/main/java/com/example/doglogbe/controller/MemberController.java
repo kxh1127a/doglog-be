@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
     private final MemberService memberService;
 
-    @PostMapping("/new")
-    public CommonResult setMember(@RequestBody MemberCreateRequest request) {
-        memberService.setMember(request);
-        return ResponseService.getSuccessResult();
-    }
+//    @PostMapping("/new")
+//    public CommonResult setMember(@RequestBody MemberCreateRequest request) {
+//        memberService.setMember(request);
+//        return ResponseService.getSuccessResult();
+//    }
 
     // 페이징 READ
     @GetMapping("/api")

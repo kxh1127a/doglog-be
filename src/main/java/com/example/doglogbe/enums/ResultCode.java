@@ -19,7 +19,7 @@ public enum ResultCode {
     USER_NOT_FOUND(-1001, "사용자를 찾을 수 없습니다."),
     INVALID_PASSWORD(-1002, "비밀번호가 일치하지 않습니다."),
     INVALID_EMAIL_FORMAT(-1003, "이메일 형식이 올바르지 않습니다."),
-    DUPLICATE_NICKNAME(-1004, "이미 사용 중인 닉네임입니다."),
+    DUPLICATE_USERNAME(-1004, "이미 사용 중인 아이디입니다."),
     EMAIL_VERIFICATION_REQUIRED(-1005, "이메일 인증이 필요합니다."),
     EMAIL_VERIFICATION_FAILED(-1006, "이메일 인증에 실패했습니다."),
     ACCOUNT_DISABLED(-1007, "비활성화된 계정입니다."),
@@ -35,6 +35,11 @@ public enum ResultCode {
     PASSWORD_CHANGE_FAILED(-1017, "비밀번호 변경에 실패했습니다."),
     USER_DELETION_FAILED(-1018, "회원 탈퇴에 실패했습니다."),
     USER_UPDATE_FAILED(-1019, "회원 정보 수정에 실패했습니다."),
+    DUPLICATE_EMAIL(-1020, "이미 사용 중인 이메일입니다."),
+    DUPLICATE_PHONE(-1021, "이미 사용 중인 핸드폰입니다."),
+    INVALID_USERNAME_FORMAT(-1022, "아이디 형식이 올바르지 않습니다."),
+    INVALID_PASSWORD_FORMAT(-1023, "비밀번호 형식이 올바르지 않습니다."),
+    INVALID_PHONE_FORMAT(-1024, "핸드폰 형식이 올바르지 않습니다."),
 
     // -2000 ~ -2999: 반려동물(Pet)
     PET_ALREADY_REGISTERED(-2000, "이미 등록된 반려동물입니다."),

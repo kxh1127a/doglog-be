@@ -11,4 +11,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Page<Member> findByIsEnabled(boolean isEnabled, Pageable pageable);
 
     Optional<Member> findByUserName(String userName);
+
+    boolean existsByUserName(String userName);
+    boolean existsByEmail(String email);
+    boolean existsByPhone(String phone);
 }

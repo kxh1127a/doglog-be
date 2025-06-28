@@ -39,4 +39,60 @@ public class ExceptionAdvice {
     protected CommonResult customException(HttpServletRequest request, CQuestionNotFoundException e) {
         return ResponseService.getFailResult(ResultCode.QUESTION_NOT_FOUND);
     }
+
+    // 이미 사용 중인 아이디입니다.
+    @ExceptionHandler(CDuplicateUsernameException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CDuplicateUsernameException e) {
+        return ResponseService.getFailResult(ResultCode.DUPLICATE_USERNAME);
+    }
+
+    // 이미 사용 중인 이메일입니다.
+    @ExceptionHandler(CDuplicateEmailException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CDuplicateEmailException e) {
+        return ResponseService.getFailResult(ResultCode.DUPLICATE_EMAIL);
+    }
+
+    // 이미 사용 중인 핸드폰입니다.
+    @ExceptionHandler(CDuplicatePhoneException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CDuplicatePhoneException e) {
+        return ResponseService.getFailResult(ResultCode.DUPLICATE_PHONE);
+    }
+
+    // 비밀번호가 일치하지 않습니다.
+    @ExceptionHandler(CInvalidPasswordException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CInvalidPasswordException e) {
+        return ResponseService.getFailResult(ResultCode.INVALID_PASSWORD);
+    }
+
+    // 아이디 형식이 올바르지 않습니다.
+    @ExceptionHandler(CInvalidUsernameFormatException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CInvalidUsernameFormatException e) {
+        return ResponseService.getFailResult(ResultCode.INVALID_USERNAME_FORMAT);
+    }
+
+    // 비밀번호 형식이 올바르지 않습니다.
+    @ExceptionHandler(CInvalidPasswordFormatException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CInvalidPasswordFormatException e) {
+        return ResponseService.getFailResult(ResultCode.INVALID_PASSWORD_FORMAT);
+    }
+
+    // 이메일 형식이 올바르지 않습니다.
+    @ExceptionHandler(CInvalidEmailFormatException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CInvalidEmailFormatException e) {
+        return ResponseService.getFailResult(ResultCode.INVALID_EMAIL_FORMAT);
+    }
+
+    // 핸드폰 형식이 올바르지 않습니다.
+    @ExceptionHandler(CInvalidPhoneFormatException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CInvalidPhoneFormatException e) {
+        return ResponseService.getFailResult(ResultCode.INVALID_PHONE_FORMAT);
+    }
 }
