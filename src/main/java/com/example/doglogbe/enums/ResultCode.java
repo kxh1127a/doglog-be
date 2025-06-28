@@ -35,8 +35,11 @@ public enum ResultCode {
     PASSWORD_CHANGE_FAILED(-1017, "비밀번호 변경에 실패했습니다."),
     USER_DELETION_FAILED(-1018, "회원 탈퇴에 실패했습니다."),
     USER_UPDATE_FAILED(-1019, "회원 정보 수정에 실패했습니다."),
-    DUPLICATE_EMAIL(-1004, "이미 사용 중인 이메일입니다."),
-    DUPLICATE_PHONE(-1004, "이미 사용 중인 핸드폰입니다."),
+    DUPLICATE_EMAIL(-1020, "이미 사용 중인 이메일입니다."),
+    DUPLICATE_PHONE(-1021, "이미 사용 중인 핸드폰입니다."),
+    INVALID_USERNAME_FORMAT(-1022, "아이디 형식이 올바르지 않습니다."),
+    INVALID_PASSWORD_FORMAT(-1023, "비밀번호 형식이 올바르지 않습니다."),
+    INVALID_PHONE_FORMAT(-1024, "핸드폰 형식이 올바르지 않습니다."),
 
     // -2000 ~ -2999: 반려동물(Pet)
     PET_ALREADY_REGISTERED(-2000, "이미 등록된 반려동물입니다."),

@@ -67,4 +67,32 @@ public class ExceptionAdvice {
     protected CommonResult customException(HttpServletRequest request, CInvalidPasswordException e) {
         return ResponseService.getFailResult(ResultCode.INVALID_PASSWORD);
     }
+
+    // 아이디 형식이 올바르지 않습니다.
+    @ExceptionHandler(CInvalidUsernameFormatException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CInvalidUsernameFormatException e) {
+        return ResponseService.getFailResult(ResultCode.INVALID_USERNAME_FORMAT);
+    }
+
+    // 비밀번호 형식이 올바르지 않습니다.
+    @ExceptionHandler(CInvalidPasswordFormatException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CInvalidPasswordFormatException e) {
+        return ResponseService.getFailResult(ResultCode.INVALID_PASSWORD_FORMAT);
+    }
+
+    // 이메일 형식이 올바르지 않습니다.
+    @ExceptionHandler(CInvalidEmailFormatException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CInvalidEmailFormatException e) {
+        return ResponseService.getFailResult(ResultCode.INVALID_EMAIL_FORMAT);
+    }
+
+    // 핸드폰 형식이 올바르지 않습니다.
+    @ExceptionHandler(CInvalidPhoneFormatException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CInvalidPhoneFormatException e) {
+        return ResponseService.getFailResult(ResultCode.INVALID_PHONE_FORMAT);
+    }
 }
