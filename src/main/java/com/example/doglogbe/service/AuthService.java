@@ -31,6 +31,7 @@ public class AuthService {
             throw new CDuplicateUsernameException();
         }
 
+
         String encodedPassword = passwordEncoder.encode(request.password());
 
         Member member = Member.builder()
