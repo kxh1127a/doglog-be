@@ -32,8 +32,13 @@ public class SecurityConfig {
             "/swagger-ui.html",
 
             "/auth/join", // 유저 회원가입
-            "/auth/login"
+            "/auth/login",
 //            "/auth/admin/join" // 관리자 가입(테스트용)
+
+            "member/**",
+            "qna/**",
+            "pet/**",
+            "uploads/**"
     };
 
     @Bean
