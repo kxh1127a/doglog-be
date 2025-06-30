@@ -34,6 +34,7 @@ public class SecurityConfig {
             "/auth/join", // 유저 회원가입
             "/auth/login",
             "/auth/admin/login",
+            "/auth/me",
 
             "member/**",
             "qna/**",

@@ -41,14 +41,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid JWT token");
                 return;
             }
-        } else {
-            // 토큰이 없을 때 401 응답 (특히 보호된 경로일 경우)
-            // 다만, 공개 API라면 그냥 넘어가게 하려면 이 부분 제거 가능
-            String path = request.getRequestURI();
-            if (path.startsWith("/admin")) { // 관리자 API 등 인증 필요한 경로에 대해 엄격 처리
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authorization header missing or invalid");
-                return;
-            }
         }
 
         filterChain.doFilter(request, response);

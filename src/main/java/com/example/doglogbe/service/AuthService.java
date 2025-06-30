@@ -94,6 +94,10 @@ public class AuthService {
             throw new CInvalidPasswordException();
         }
 
+        if(member.getRole() != MemberRole.ADMIN) {
+            throw new CAccessDeniedException();
+        }
+
         String token = jwtUtil.createAccessToken(member);
         return new AuthLoginResponse(token);
     }

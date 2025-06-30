@@ -17,7 +17,7 @@ public enum ResultCode {
     // -1000 ~ -1999: 회원(User)
     USER_ALREADY_EXISTS(-1000, "이미 등록된 사용자입니다."),
     USER_NOT_FOUND(-1001, "사용자를 찾을 수 없습니다."),
-    INVALID_PASSWORD(-1002, "비밀번호가 일치하지 않습니다."),
+    INVALID_PASSWORD(-1002, "아이디 또는 비밀번호가 일치하지 않습니다."),
     INVALID_EMAIL_FORMAT(-1003, "이메일 형식이 올바르지 않습니다."),
     DUPLICATE_USERNAME(-1004, "이미 사용 중인 아이디입니다."),
     EMAIL_VERIFICATION_REQUIRED(-1005, "이메일 인증이 필요합니다."),
@@ -43,7 +43,7 @@ public enum ResultCode {
     // 토큰 401 Unauthorized 상황에 대응
     UNAUTHENTICATED(-1025, "인증정보가 없습니다. 로그인이 필요합니다."),
     // 토큰 403 Forbidden 상황에 대응
-    ACCESS_DENIED(-1026, "접근 권한이 없습니다."),
+    ACCESS_DENIED(-1026, "접근 권한이 없는 계정입니다. 관리자 계정으로 로그인 해주세요."),
     // 토큰 인증 실패
     INVALID_TOKEN(-1027, "인증에 실패했습니다. 유효하지 않은 토큰입니다."),
 
