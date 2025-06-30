@@ -95,4 +95,32 @@ public class ExceptionAdvice {
     protected CommonResult customException(HttpServletRequest request, CInvalidPhoneFormatException e) {
         return ResponseService.getFailResult(ResultCode.INVALID_PHONE_FORMAT);
     }
+
+    // 잘못된 로그인 사용자 정보입니다.
+    @ExceptionHandler(CInvalidLoginProviderException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CInvalidLoginProviderException e) {
+        return ResponseService.getFailResult(ResultCode.INVALID_LOGIN_PROVIDER);
+    }
+
+    // 인증정보가 없습니다. 로그인이 필요합니다.
+    @ExceptionHandler(CUnauthenticatedException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CUnauthenticatedException e) {
+        return ResponseService.getFailResult(ResultCode.UNAUTHENTICATED);
+    }
+
+    // 접근 권한이 없습니다.
+    @ExceptionHandler(CAccessDeniedException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CAccessDeniedException e) {
+        return ResponseService.getFailResult(ResultCode.ACCESS_DENIED);
+    }
+
+    // 인증에 실패했습니다. 유효하지 않은 토큰입니다.
+    @ExceptionHandler(CInvalidTokenException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected CommonResult customException(HttpServletRequest request, CInvalidTokenException e) {
+        return ResponseService.getFailResult(ResultCode.INVALID_TOKEN);
+    }
 }

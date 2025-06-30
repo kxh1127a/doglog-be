@@ -40,6 +40,12 @@ public enum ResultCode {
     INVALID_USERNAME_FORMAT(-1022, "아이디 형식이 올바르지 않습니다."),
     INVALID_PASSWORD_FORMAT(-1023, "비밀번호 형식이 올바르지 않습니다."),
     INVALID_PHONE_FORMAT(-1024, "핸드폰 형식이 올바르지 않습니다."),
+    // 토큰 401 Unauthorized 상황에 대응
+    UNAUTHENTICATED(-1025, "인증정보가 없습니다. 로그인이 필요합니다."),
+    // 토큰 403 Forbidden 상황에 대응
+    ACCESS_DENIED(-1026, "접근 권한이 없습니다."),
+    // 토큰 인증 실패
+    INVALID_TOKEN(-1027, "인증에 실패했습니다. 유효하지 않은 토큰입니다."),
 
     // -2000 ~ -2999: 반려동물(Pet)
     PET_ALREADY_REGISTERED(-2000, "이미 등록된 반려동물입니다."),
