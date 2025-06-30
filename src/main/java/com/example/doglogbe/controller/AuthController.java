@@ -1,6 +1,5 @@
 package com.example.doglogbe.controller;
 
-import com.example.doglogbe.exception.CInvalidLoginProviderException;
 import com.example.doglogbe.model.AuthJoinRequest;
 import com.example.doglogbe.model.AuthLoginRequest;
 import com.example.doglogbe.model.AuthLoginResponse;
@@ -9,11 +8,8 @@ import com.example.doglogbe.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -37,28 +33,13 @@ public class AuthController {
         return "관리자 생성 완료";
     }
 
-    @PostMapping("/login")
-    public AuthLoginResponse doLogin(@RequestBody AuthLoginRequest authLoginRequest) {
-        return authService.doLogin(authLoginRequest);
+    @PostMapping("/admin/login")
+    public AuthLoginResponse doAdminLogin(@RequestBody AuthLoginRequest authLoginRequest) {
+        return authService.doAdminLogin(authLoginRequest);
     }
 
     @GetMapping("/me")
     public AuthMeResponse getCurrentUser(Authentication authentication) {
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new CInvalidLoginProviderException();
-        }
-
-        Object principal = authentication.getPrincipal();
-
-        if (principal instanceof UserDetails userDetails) {
-            String authority = userDetails.getAuthorities().stream()
-                    .findFirst()
-                    .map(GrantedAuthority::getAuthority)
-                    .orElse("");
-            return new AuthMeResponse(userDetails.getUsername(), authority);
-        }
+        return authService.getCurrentUser(authentication);
     }
-
-
-
 }

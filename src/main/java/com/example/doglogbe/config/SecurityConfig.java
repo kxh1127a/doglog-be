@@ -33,7 +33,7 @@ public class SecurityConfig {
 
             "/auth/join", // 유저 회원가입
             "/auth/login",
-//            "/auth/admin/join" // 관리자 가입(테스트용)
+            "/auth/admin/login",
 
             "member/**",
             "qna/**",

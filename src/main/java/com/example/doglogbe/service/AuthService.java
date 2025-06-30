@@ -8,8 +8,12 @@ import com.example.doglogbe.lib.CommonCheck;
 import com.example.doglogbe.model.AuthJoinRequest;
 import com.example.doglogbe.model.AuthLoginRequest;
 import com.example.doglogbe.model.AuthLoginResponse;
+import com.example.doglogbe.model.AuthMeResponse;
 import com.example.doglogbe.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -84,7 +88,7 @@ public class AuthService {
         }
     }
 
-    public AuthLoginResponse doLogin(AuthLoginRequest authLoginRequest) {
+    public AuthLoginResponse doAdminLogin(AuthLoginRequest authLoginRequest) {
         Member member = memberRepository.findByUserName(authLoginRequest.username()).orElseThrow(CUserNotFoundException::new);
         if(!passwordEncoder.matches(authLoginRequest.password(), member.getPassword())) {
             throw new CInvalidPasswordException();
@@ -92,5 +96,23 @@ public class AuthService {
 
         String token = jwtUtil.createAccessToken(member);
         return new AuthLoginResponse(token);
+    }
+
+    public AuthMeResponse getCurrentUser(Authentication authentication) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new CUnauthenticatedException();
+        }
+
+        Object principal = authentication.getPrincipal();
+
+        if (principal instanceof UserDetails userDetails) {
+            String authority = userDetails.getAuthorities().stream()
+                    .findFirst()
+                    .map(GrantedAuthority::getAuthority)
+                    .orElse("");
+            return new AuthMeResponse(userDetails.getUsername(), authority);
+        }
+
+        throw new CInvalidTokenException();
     }
 }
