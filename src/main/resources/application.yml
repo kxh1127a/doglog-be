@@ -9,9 +9,9 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
   datasource:
-    url: jdbc:postgresql://34.64.202.138:5432/postgres
-    username: postgres
-    password: Ace0909!!
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     hikari:
       maximum-pool-size: 10
     driver-class-name: org.postgresql.Driver
