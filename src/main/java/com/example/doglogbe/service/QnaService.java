@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -134,12 +135,22 @@ public class QnaService {
     }
 
     public QnaResponse setQna(QnaCreateRequest request) {
-        Question question = questionRepository.findById(request.getQuestionId()).orElseThrow(CQuestionNotFoundException::new);
-        Answer answer = new Answer.Builder(request, question).build();
-        System.out.println(answer.getEditDate());
-        answerRepository.save(answer);
+        Question question = questionRepository.findById(request.getQuestionId())
+                .orElseThrow(CQuestionNotFoundException::new);
 
-        QnaResponse result = new QnaResponse.Builder(question).build();
-        return result;
+//        Optional<Answer> target = answerRepository.findByQuestion(question);
+
+        Answer answer = answerRepository.findByQuestion(question)
+                .map(existing -> {
+                    existing.putAnswer(request);
+                    return existing;
+                })
+                .orElseGet(() -> new Answer.Builder(request, question).build());
+
+        answerRepository.save(answer);
+        question.setIsAnswer(true);
+        questionRepository.save(question);
+
+        return new QnaResponse.Builder(question).build();
     }
 }

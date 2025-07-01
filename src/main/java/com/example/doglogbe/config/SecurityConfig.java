@@ -36,10 +36,11 @@ public class SecurityConfig {
             "/auth/admin/login",
             "/auth/me",
 
-            "member/**",
-            "qna/**",
-            "pet/**",
-            "uploads/**"
+            "/member/**",
+            "/qna/**",
+            "/pet/**",
+            "/uploads/**",
+
     };
 
     @Bean

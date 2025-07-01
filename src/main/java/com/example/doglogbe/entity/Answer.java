@@ -35,6 +35,11 @@ public class Answer {
     @Column(nullable = false)
     private Boolean isEnabled;
 
+    public void putAnswer(QnaCreateRequest request) {
+        this.comment = request.getComment();
+        this.editDate = LocalDate.now();
+    }
+
     private Answer(Builder builder) {
         this.question = builder.question;
         this.comment = builder.comment;

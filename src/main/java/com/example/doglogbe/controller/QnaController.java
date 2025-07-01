@@ -27,8 +27,9 @@ public class QnaController {
         return ResponseService.getSingleResult(qnaService.getQna(id));
     }
 
-    @PostMapping("/details/answer")
+    @PostMapping("/answer")
     public SingleResult<QnaResponse> setQna(@RequestBody QnaCreateRequest request) {
+        System.out.println(request);
         return ResponseService.getSingleResult(qnaService.setQna(request));
     }
 }
