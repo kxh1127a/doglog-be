@@ -9,7 +9,7 @@ public class CommonCheck {
 
     // 아이디: 영문자로 시작하고, 영문자+숫자 조합 5~20자
     public static boolean checkUsername(String username) {
-        String pattern = "^[a-zA-Z][a-zA-Z0-9]{4,19}$";
+        String pattern = "^[a-zA-Z][a-zA-Z0-9]{3,19}$";
         return username.matches(pattern);
     }
 

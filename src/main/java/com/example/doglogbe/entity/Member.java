@@ -79,6 +79,7 @@ public class Member {
         this.phone = authJoinRequest.phone();
         this.email = authJoinRequest.email();
         this.createdAt = LocalDateTime.now();
+        this.lastLoginAt = LocalDateTime.now();
         this.isEnabled = true;
     }
 }
