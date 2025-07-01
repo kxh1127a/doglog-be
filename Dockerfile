@@ -15,7 +15,7 @@ RUN chmod +x gradlew
 COPY . .
 
 # Gradle 빌드 실행
-RUN RUN ./gradlew clean build -x test
+RUN ./gradlew clean build -x test
 
 # 애플리케이션 실행
 CMD ["java", "-jar", "build/libs/doglog-be-0.0.1-SNAPSHOT.jar"]
