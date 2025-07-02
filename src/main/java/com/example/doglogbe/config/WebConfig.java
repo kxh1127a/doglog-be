@@ -17,7 +17,11 @@ public class WebConfig implements WebMvcConfigurer {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // 모든 경로
-                        .allowedOrigins("http://localhost:3000", "http://192.168.0.60:3000" ,"http://192.168.0.11:3000/")
+                        .allowedOrigins("http://localhost:3000",
+                                "http://192.168.0.60:3000",
+                                "http://192.168.0.11:3000",
+                                "https://doglog-fe-keepwarms-projects-3e0ebce5.vercel.app"
+                        )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
