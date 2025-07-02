@@ -83,6 +83,7 @@ public class SecurityConfig {
                 "http://localhost:3000",
                 "http://192.168.0.60:3000",
                 "http://192.168.0.11:3000",
+                "https://doglog-fe.vercel.app/",
                 "https://doglog-fe-keepwarms-projects-3e0ebce5.vercel.app"
         ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));

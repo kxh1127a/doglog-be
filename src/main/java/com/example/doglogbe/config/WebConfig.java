@@ -20,6 +20,7 @@ public class WebConfig implements WebMvcConfigurer {
                         .allowedOrigins("http://localhost:3000",
                                 "http://192.168.0.60:3000",
                                 "http://192.168.0.11:3000",
+                                "https://doglog-fe.vercel.app/",
                                 "https://doglog-fe-keepwarms-projects-3e0ebce5.vercel.app"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
